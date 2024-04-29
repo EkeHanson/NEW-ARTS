@@ -1,4 +1,4 @@
-let emailVerification = "C:\\Users\\HP\\Desktop\\NEW-ARTS-WEBSITE\\email-verification.html"
+let emailVerification = "https://new-arts-website.vercel.app/email-verification.html"
 
 document.getElementById("signUpBtn").addEventListener("click", function() {
     let email = document.getElementById("signUpEmail").value;
