@@ -1,5 +1,4 @@
-console.log("You want to click sign up to register email")
-
+let emailVerification = "C:\\Users\\HP\\Desktop\\NEW-ARTS-WEBSITE\\email-verification.html"
 
 document.getElementById("signUpBtn").addEventListener("click", function() {
     let email = document.getElementById("signUpEmail").value;
@@ -14,7 +13,9 @@ document.getElementById("signUpBtn").addEventListener("click", function() {
     .then(response => response.json())
     .then(data => {
         console.log(data.message);
-        // You can display a success message or perform other actions here
+        if (data.message === 'Email sent successfully') {
+            window.location.href = emailVerification;
+        }
     })
     .catch(error => {
         console.error('Error:', error);
