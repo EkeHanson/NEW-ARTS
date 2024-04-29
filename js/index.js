@@ -1,4 +1,4 @@
-
+console.log("You want to click sign up to register email")
 
 
 document.getElementById("signUpBtn").addEventListener("click", function() {
@@ -7,7 +7,7 @@ document.getElementById("signUpBtn").addEventListener("click", function() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': csrf_token, // Make sure to include the CSRF token if CSRF protection is enabled
+            // 'X-CSRFToken': csrf_token, // Make sure to include the CSRF token if CSRF protection is enabled
         },
         body: JSON.stringify({ email: email }),
     })
