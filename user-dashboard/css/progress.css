@@ -1,0 +1,352 @@
+/*ola-topZ*/
+.ola-topZ{
+	position: relative;
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 30px;
+}
+@media screen and (max-width:500px){
+	.ola-topZ{
+		display: block !important;
+	}
+	.ola-topZ h3{
+		margin-bottom: 15px !important;
+		font-size: 15px !important;
+	}
+	.ola-topZ-2,
+	.ola-topZ-2 input{
+		width: 100% !important;
+		margin-left: 0px !important;
+	}
+}
+.ola-topZ-1 h3{
+	font-size: 18px;
+	font-weight: 500;
+}
+@media screen and (max-width:500px){
+	.ola-topZ-1 h3{
+		font-size: 16px !important;
+	}
+}
+.ola-topZ-2{
+	position: relative;
+	width: auto;
+	display: inline-flex;
+	align-items: center;
+	margin-left: 15px;
+}
+.ola-topZ-2 input{
+	position: relative;
+	width: 270px;
+	height: 43px;
+	border:1px solid #D3D3D3;
+	padding: 0px 10px;
+	border-radius: 5px;
+	padding-left: 41px;
+	transition: all 0.3s ease-in-out;
+}
+.ola-topZ-2 input:focus{
+	border-color: #000;
+}
+.ola-topZ-2 button{
+	position: absolute;
+	z-index: 10;
+	width: 42px;
+	height: 42px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	cursor: pointer;
+}
+.ola-topZ-2 button img{
+	width: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*onglo-box*/
+.onglo-box{
+	position: relative;
+	width: 100%;
+	height: auto;
+	border-radius: 10px;
+	margin-top: 20px;
+}
+.course-progress-sec{
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding: 10px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.course-progress-sec h6,
+.course-progress-sec p{
+	font-size: 9px;
+	font-weight: 500;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+.progress-o-bar{
+	position: relative;
+	width: 40px;
+	height: 5px;
+	background: #EBEBEB;
+	border-radius: 30px;
+	margin: 0px 7px;
+	overflow:hidden;
+}
+.progress-percent-bar{
+	position: absolute;
+	width: 30%;
+	height: 100%;
+	background: #F29D56;
+}
+.progress-percent-bar.no-progress{
+	width: 0%;
+}
+.courses-title{
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding: 15px 20px;
+	border-bottom: 1px solid #F2F2F2;
+	padding-top: 10px;
+}
+.courses-title h3{
+	font-size: 16px;
+	font-weight: 500;
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+.courses-title h3 span{
+	margin-left: 10px;
+	margin-top: 5px;
+	padding: 3px 10px;
+	background: #FFE6F4;
+	color: #ED55AB;
+	border-radius: 30px;
+	font-size: 10px !important;
+	font-weight: 700;
+	text-transform: uppercase;
+	user-select: none;
+}
+@media screen and (max-width:500px){
+	.courses-title h3{
+		font-size: 15px !important;
+	}
+	.courses-title h3 span{
+		font-size: 8px !important;
+	}
+}
+/*secion-altsy*/
+.secion-altsy{
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding: 0px 20px;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	border-bottom: 1px solid #F2F2F2;
+}
+.secion-altsy ul{
+	position: relative;
+	width: 100%;
+	height: auto;
+	overflow-x: auto;
+	display: flex;
+	align-items: center;
+}
+.secion-altsy ul li{
+	position: relative;
+	width: auto;
+	height: auto;
+	padding: 20px;
+	display: inline-flex;
+	align-items: center;
+	border-bottom: 2px solid transparent;
+	border-left:2px solid #fff;
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
+	user-select: none;
+}
+@media screen and (max-width:500px){
+	.secion-altsy ul li{
+		padding: 15px !important;
+		font-size: 13px !important;
+	}
+}
+.secion-altsy ul li:first-child{
+	border-left: none;
+}
+.secion-altsy ul li:hover{
+	background: #EFF7FD;
+}
+.secion-altsy ul li.active-altsy-icon{
+	background: #EFF7FD;
+	border-color: #0055FF;
+	border-left-color: transparent !important;
+}
+.secion-altsy ul li i{
+	margin-right: 8px;
+}
+
+.cancel-couses-sec{
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 10px;
+}
+.cancel-couses-sec button{
+	position: relative;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	background:#F0F0F0;
+	transition: all 0.3s ease-in-out;
+}
+.cancel-couses-sec button:hover{
+	background: #C3C3C3;
+}
+.cancel-couses-sec button i{
+	font-weight: 800;
+	font-size: 12px;
+}
+
+/*main-onglo-box*/
+.main-onglo-box{
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding: 20px;
+}
+
+
+
+
+/*progress-dlt*/
+.progress-dlt{
+	position: relative;
+	width: 100%;
+	height: auto;
+}
+
+.progress-dlt-main{
+	position: relative;
+	width: 100%;
+	height: auto;
+	display: grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    grid-template-rows:auto;
+    margin-top: 20px;
+}
+@media screen and (max-width:600px){
+	.progress-dlt-main{
+		display: block !important;
+		margin-top: 0px !important;
+	}
+	.progress-box{
+		margin-top: 20px !important;
+	}
+}
+.progress-box{
+	position: relative;
+	width: 100%;
+	height: auto;
+	background: #fff;
+	border:1px solid #F2F2F2;
+	border-radius: 5px;
+}
+.progress-box h4{
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: 500;
+	border-bottom:1px solid #F2F2F2;
+	padding: 10px 10px;
+}
+.progress-box p{
+	font-size: 14px !important;
+	border-bottom:1px solid #F2F2F2;
+	padding: 10px 10px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.progress-box p span{
+	font-size: 9px !important;
+	padding: 4px 7px;
+	background: #ECF4FD;
+	border-radius: 40px;
+	white-space: nowrap;
+	font-weight: 500;
+}
+
+.dlt-course-progress-sec{
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding: 10px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.dlt-course-progress-sec h6,
+.dlt-course-progress-sec p{
+	font-size: 10px !important;
+	font-weight: 500;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+.dlt-progress-o-bar{
+	position: relative;
+	width: 40px;
+	height: 5px;
+	background: #EBEBEB;
+	border-radius: 30px;
+	margin: 0px 7px;
+	overflow:hidden;
+}
+.dlt-progress-percent-bar{
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	background: #F29D56;
+}
+
+.completed{
+	background: #1DD366 !important;
+	width: 100% !important;
+}
+
+
+

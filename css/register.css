@@ -1,0 +1,291 @@
+body{
+	background: #F9FAFB !important;
+}
+
+.reg-sec{
+	position: relative;
+	width: 100%;
+	height: auto;
+}
+.reg-sec-main{
+	position: relative;
+	width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	padding: 40px 0px;
+}
+
+.reg-box{
+	position: relative;
+	width: 550px;
+	height: auto;
+	border: 1px solid #efefef;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 8px 13px rgba(230, 230, 230, 0.3);
+    -moz-box-shadow: 0 8px 13px rgba(230, 230, 230, 0.3);
+    box-shadow: 0 8px 13px rgba(230, 230, 230, 0.3);
+	overflow: hidden;
+}
+@media screen and (max-width:600px){
+	.reg-box{
+		width: 100% !important;
+	}
+}
+
+.reg-box-nav{
+	position: relative;
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: center;
+}
+.reg-box-nav a{
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding: 20px;
+	text-align: center;
+	font-size: 15px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+@media screen and (max-width:400px){
+	.reg-box-nav a{
+		font-size: 14px !important;
+		padding: 15px !important;
+	}
+}
+.reg-box-nav a.active-regNav{
+	background: #fff;
+}
+
+/*reg-box-form-sec*/
+.reg-box-form-sec{
+	position: relative;
+	width: 100%;
+	height: auto;
+	background: #fff;
+	padding: 40px;
+	padding-bottom: 30px;
+}
+@media screen and (max-width:400px){
+	.reg-box-form-sec{
+		padding: 30px !important;
+	}
+}
+.reg-box-form-tOp{
+	position: relative;
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+.reg-box-form-tOp h3{
+	font-size: 30px;
+	font-weight: 500;
+	margin-bottom: 20px;
+}
+@media screen and (max-width:400px){
+	.reg-box-form-tOp h3{
+		margin-bottom: 15px !important;
+		font-size: 25px !important;
+	}
+	.reg-box-form-tOp p{
+	font-size: 14px !important;
+}
+}
+.reg-box-form-tOp p{
+	font-size: 15px;
+}
+.ss-herf{
+	position: relative;
+	width: 100%;
+	height: auto;
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+}
+@media screen and (max-width:600px){
+	.ss-herf{
+		flex-direction: column !important;
+	}
+	.ss-herf a{
+		padding: 15px 10px !important;
+	}
+}
+.ss-herf a{
+	position: relative;
+	width: 100%;
+	height: auto;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 15px 20px;
+	border:1px solid #CBD5DE;
+	margin:7px;
+	border-radius: 5px;
+	white-space: nowrap;
+	transition: all 0.3s ease-in-out;
+}
+@media screen and (max-width:315px){
+	.ss-herf a span span{
+		display: none !important;
+	}
+}
+.ss-herf a svg{
+	margin-right: 10px;
+	width: 20px;
+}
+.ss-herf a:hover{
+	background: #F6F6F6;
+}
+
+.orjs-sec{
+	position: relative;
+	width: 100%;
+	height: 1px;
+	margin: 30px 0px;
+	text-align: center;
+	background: #CBD5DE;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.orjs-sec span{
+	background: #fff;
+	padding:10px 20px;
+	font-size: 14px;
+	font-weight: 500;
+}
+.reg-form{
+	position: relative;
+	width: 100%;
+	height: auto;
+}
+.form-input{
+	position: relative;
+	width: 100%;
+	height: auto;
+	margin-top: 10px;
+}
+.form-input span{
+	position: absolute;
+	right: 0;
+	z-index: 10;
+	width: 45px;
+	height: 50px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+.form-input span svg{
+	width: 30px;
+}
+@media screen and (max-width:400px){
+	.form-input span svg{
+	width: 25px !important;
+}
+}
+.form-input span svg.hidePass{
+	display: none;
+}
+.togle-pass-icon svg.hidePass{
+	display: inline-flex !important;
+}
+.togle-pass-icon svg.showPass{
+	display: none !important;
+}
+.form-input input{
+	position: relative;
+	width: 100%;
+	height: 50px;
+	border:1px solid #CBD5DE;
+	padding: 0px 15px;
+	border-radius: 5px;
+	font-size: 16px;
+	transition: all 0.3s ease-in-out;
+}
+.form-input input:focus{
+	border-color: #0055FF;
+}
+@media screen and (max-width:500px){
+	.form-input input{
+		font-size: 15px !important;
+	}
+}
+.form-input input[type="password"]{
+	padding-right: 40px;
+}
+.form-input p{
+	font-size: 12px !important;
+	margin: 15px 0px;
+	text-align: center;
+}
+.form-input p a{
+	text-decoration: underline;
+}
+
+.form-submit-input{
+	position: relative;
+	width: 100%;
+	height: auto;
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.form-submit-input button{
+	position: relative;
+	width: 230px;
+	height: 50px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 20px;
+	font-size: 18px;
+	font-weight: 700;
+	background:#0055FF;
+	color: #fff;
+	border-radius: 3px;
+	z-index: 1;
+	transition: all 0.3s ease-in-out;
+}
+.form-submit-input button:before{
+	content: "→";
+	position: absolute;
+	right: 20px;
+	font-size: 2em;
+	height: 100%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+.form-submit-input button:hover{
+	background: #003AB3;
+}
+@media screen and (max-width:500px){
+	.form-submit-input button{
+		font-size: 17px !important;
+	}
+}
+.form-input-sub{
+	position: relative;
+	width: 100%;
+	height: auto;
+	margin: 20px 0px;
+	text-align: center;
+}
+.form-input-sub a{
+	font-size: 16px;
+	font-weight: 500;
+	color: #0055FF;
+}
+
+@media screen and (max-width:500px){
+	.form-input-sub a{
+		font-size: 15px !important;
+	}
+}
