@@ -131,6 +131,10 @@ if (document.querySelector("#joinForFreeBtn")) {
 
             loginLink.addEventListener('click', function() {
                 localStorage.removeItem('accessToken');
+                localStorage.removeItem('userId');
+                localStorage.removeItem('userFirstName');
+                localStorage.removeItem('userLastName');
+             
                 window.location.href = 'index.html';
             });
             joinForFreeBtn.addEventListener('click', function() {
@@ -158,8 +162,12 @@ if( document.querySelector("#home")){
     userName.innerHTML =  `${userFirstName}  ${userlastName}`
      document.getElementById("usernameId").textContent = `${userFirstName} + ${userlastName}`
 
-     document.getElementById('logginBtn').addEventListener('click', function() {
+
+     document.getElementById('logOutBtn').addEventListener('click', function() {
         localStorage.removeItem('accessToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userFirstName');
+        localStorage.removeItem('userLastName');
         window.location.href = 'index.html';
     });
 
