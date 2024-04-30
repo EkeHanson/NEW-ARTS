@@ -137,7 +137,6 @@ if (document.querySelector("#joinForFreeBtn")) {
                 window.location.href = 'user-dashboard/dashboard.html'; // Corrected URL format
             });
         } else {
-            loginLink.textContent = 'Login';
             joinForFreeBtn.addEventListener('click', function() {
                 window.location.href = 'signup.html';});
         }
