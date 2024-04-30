@@ -146,4 +146,13 @@ if (document.querySelector("#joinForFreeBtn")) {
     checkLoginStatus();
 }
 
+if( document.querySelector("#home")){
+    let userFirstName = localStorage.getItem('userFirstName');
+    let userlastName = localStorage.getItem('userLastName');
+    console.log(userFirstName)
+    console.log(userlastName)
+    let welcomeParagraph = document.getElementById("welcome-guest");
+    welcomeParagraph.innerHTML =  `${userFirstName}  ${userlastName}`
+     document.getElementById("usernameId").textContent = `${userFirstName} + ${userlastName}`
+ }
 
