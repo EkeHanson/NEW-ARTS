@@ -152,8 +152,17 @@ if( document.querySelector("#home")){
     console.log(userlastName)
     let welcomeParagraph = document.getElementById("welcome-guest");
     let userName = document.getElementById("userName");
+
+
     welcomeParagraph.innerHTML =  `${userFirstName}  ${userlastName}`
     userName.innerHTML =  `${userFirstName}  ${userlastName}`
      document.getElementById("usernameId").textContent = `${userFirstName} + ${userlastName}`
+
+     document.getElementById('logginBtn').addEventListener('click', function() {
+        localStorage.removeItem('accessToken');
+        window.location.href = 'index.html';
+    });
+
+
  }
 
