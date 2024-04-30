@@ -1,5 +1,5 @@
 let loginPage = "https://new-arts-website.vercel.app/login.html"
-let coursesPage = "https://new-arts-website.vercel.app/course-list.html"
+let coursesPage = "https://new-arts-website.vercel.app/courses.html"
 
 if (document.querySelector("#signUpBtn")){
     let emailVerification = "https://new-arts-website.vercel.app/email-verification.html"
@@ -93,6 +93,13 @@ if (document.querySelector("#logInForm")){
     })
     .then(response => {
         if (response.ok) {
+             // Save response details to local storage
+            response.json().then(data => {
+            localStorage.setItem('accessToken', data.access_token);
+            // localStorage.setItem('userId', data.user_id);
+            // localStorage.setItem('userFirstName', data.user_first_name);
+            // localStorage.setItem('userLastName', data.user_last_name);
+            });
             window.location.href = coursesPage;
             return response.json();
             
@@ -108,6 +115,5 @@ if (document.querySelector("#logInForm")){
         console.error('There was a problem with the fetch operation:', error);
     });
 });
-
-
 }
+

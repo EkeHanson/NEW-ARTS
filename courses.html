@@ -80,7 +80,7 @@
         <ul class="right-navUl">
           <li><a href="javascript:voi(0);" class="search-toggler" onclick="CloseAllNavSelt();"><img src="svg/search-icon.svg"> Search</a></li>
 
-          <li><a href="login.html" onclick="CloseAllNavSelt();"><img src="svg/login-icon.svg"> Login</a></li>
+          <li  id="logginBtn"><a href="login.html" onclick="CloseAllNavSelt();"><img src="svg/login-icon.svg"> Login</a></li>
 
           <li><a href="signup.html" class="site-btn btn-bg2" onclick="CloseAllNavSelt();">Join for Free</a></li>
         </ul>
@@ -646,6 +646,23 @@
 
 <!-- main site .js -->
   <script src="js/main.js"></script>
+  <script>
+    function checkLoginStatus() {
+    let  accessToken = localStorage.getItem('accessToken');/* Your logic to check if the user is logged in */;
+    let loginLink = document.getElementById('logginBtn');
+    if (accessToken) {
+      loginLink.textContent = 'Logout';
+      document.getElementById('logginBtn').addEventListener('click', function() {
+          localStorage.removeItem('accessToken');
+          window.location.href = 'index.html';
+               
+            });
+    } else {
+      loginLink.textContent = 'Login';
+    }
+  }
+  window.onload = checkLoginStatus;
+</script>
 
 
 </body>
