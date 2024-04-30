@@ -59,12 +59,12 @@
             <span>Or</span>
           </div>
 
-          <form class="reg-form">
+          <form class="reg-form" id ="logInForm">
             <div class="form-input">
-              <input type="text" name="" placeholder="Email Address">
+              <input type="text" name="" placeholder="Email Address" id="logEmail">
             </div>
             <div class="form-input">
-              <input type="password" name="" placeholder="Password" id="pass">
+              <input type="password" name="" placeholder="Password" id="logPass">
               <span id="pass-btn" onclick="showHide()">
                 <svg class="showPass" viewBox="0 0 32 32" fill="#333"><path d="M16 9c4.45 0 8.076 2.417 10.73 6.997a2 2 0 01-.088 2.145C23.96 21.998 20.357 24 16 24c-4.357 0-7.96-2.002-10.642-5.858a2 2 0 01-.088-2.145C7.924 11.417 11.55 9 16 9zm0 2c-3.682 0-6.682 2-9 6 2.318 3.333 5.318 5 9 5 3.682 0 6.682-1.667 9-5-2.318-4-5.318-6-9-6zm0 1a4 4 0 110 8 4 4 0 010-8zm0 2a2 2 0 100 4 2 2 0 000-4z"></path></svg>
 
@@ -75,7 +75,7 @@
               <p>By clicking "Sign in," you agree to our <a href="#">Terms of Use</a> and our <a href="#">Privacy Policy</a>.</p>
             </div>
             <div class="form-submit-input">
-              <button>Sign in </button>
+              <button id="signInBtn">Sign in </button>
             </div>
 
             <div class="form-input-sub">
@@ -110,5 +110,6 @@
 
 <!-- main site .js -->
   <script src="js/main.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>
