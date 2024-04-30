@@ -96,9 +96,9 @@ if (document.querySelector("#logInForm")){
              // Save response details to local storage
             response.json().then(data => {
             localStorage.setItem('accessToken', data.access_token);
-            // localStorage.setItem('userId', data.user_id);
-            // localStorage.setItem('userFirstName', data.user_first_name);
-            // localStorage.setItem('userLastName', data.user_last_name);
+            localStorage.setItem('userId', data.user_id);
+            localStorage.setItem('userFirstName', data.user_first_name);
+            localStorage.setItem('userLastName', data.user_last_name);
             });
             window.location.href = coursesPage;
             return response.json();
@@ -116,4 +116,34 @@ if (document.querySelector("#logInForm")){
     });
 });
 }
+
+if (document.querySelector("#joinForFreeBtn")) {
+    console.log("Join for free Button Found");
+
+    function checkLoginStatus() {
+        let accessToken = localStorage.getItem('accessToken');
+        let loginLink = document.getElementById('logginBtn');
+        let joinForFreeBtn = document.getElementById('joinForFreeBtn');
+
+        if (accessToken) {
+            joinForFreeBtn.textContent = 'Dashboard';
+            loginLink.textContent = 'Logout';
+
+            loginLink.addEventListener('click', function() {
+                localStorage.removeItem('accessToken');
+                window.location.href = 'index.html';
+            });
+            joinForFreeBtn.addEventListener('click', function() {
+                window.location.href = 'user-dashboard/dashboard.html'; // Corrected URL format
+            });
+        } else {
+            loginLink.textContent = 'Login';
+            joinForFreeBtn.addEventListener('click', function() {
+                window.location.href = 'signup.html';});
+        }
+    }
+
+    checkLoginStatus();
+}
+
 
