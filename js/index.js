@@ -1,4 +1,4 @@
-let loginPage = "https://new-arts-website.vercel.app/logint.html"
+let loginPage = "https://new-arts-website.vercel.app/login.html"
 let coursesPage = "https://new-arts-website.vercel.app/course-list.html"
 
 if (document.querySelector("#signUpBtn")){
