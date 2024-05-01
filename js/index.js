@@ -76,7 +76,8 @@ if (document.querySelector("#logInForm")){
     
     document.getElementById('signInBtn').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default form submission
-      
+      alert("You clicked to sign in")
+      alert("You have just let's see if we can let you sign in")
     // Get form data
     let formData = {
         password : document.getElementById("logPass").value,
@@ -99,6 +100,7 @@ if (document.querySelector("#logInForm")){
             localStorage.setItem('userId', data.user_id);
             localStorage.setItem('userFirstName', data.user_first_name);
             localStorage.setItem('userLastName', data.user_last_name);
+            localStorage.setItem('userEmail', data.user_email);
             });
             window.location.href = coursesPage;
             return response.json();
@@ -112,6 +114,7 @@ if (document.querySelector("#logInForm")){
     })
     .catch(error => {
         // Handle errors
+        alert("login Error")
         console.error('There was a problem with the fetch operation:', error);
     });
 });
@@ -149,18 +152,23 @@ if (document.querySelector("#joinForFreeBtn")) {
     checkLoginStatus();
 }
 
-if( document.querySelector("#home")){
+if( document.querySelector("#dashboard")){
     let userFirstName = localStorage.getItem('userFirstName');
     let userlastName = localStorage.getItem('userLastName');
-    console.log(userFirstName)
-    console.log(userlastName)
-    let welcomeParagraph = document.getElementById("welcome-guest");
+
+    
+
     let userName = document.getElementById("userName");
+    userName.innerHTML =  userFirstName !== null ? `${userFirstName}  ${userlastName}` : "Guest";
 
+    let user = document.getElementById("user");
+    user.textContent = userFirstName !== null ?  userFirstName : "Guest";
 
-    welcomeParagraph.innerHTML =  `${userFirstName}  ${userlastName}`
-    userName.innerHTML =  `${userFirstName}  ${userlastName}`
-     document.getElementById("usernameId").textContent = `${userFirstName} + ${userlastName}`
+    let welcomeParagraph = document.getElementById("welcome-guest");
+    welcomeParagraph.innerHTML =  userFirstName !== null ? `${userFirstName} ${userlastName}` : "Guest";
+    
+
+    document.getElementById("usernameId").textContent = userFirstName !== null ? `${userFirstName}  ${userlastName}` : "Guest"
 
 
      document.getElementById('logOutBtn').addEventListener('click', function() {
@@ -168,9 +176,163 @@ if( document.querySelector("#home")){
         localStorage.removeItem('userId');
         localStorage.removeItem('userFirstName');
         localStorage.removeItem('userLastName');
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
     });
+ }
+
+ if(document.querySelector("#assessmentPage")){
+    let userFirstName = localStorage.getItem('userFirstName');
+    let userlastName = localStorage.getItem('userLastName');
+   
+    let userName = document.getElementById("userName");
+    userName.innerHTML =  userFirstName !== null ? `${userFirstName}  ${userlastName}` : "Guest";
+
+    let user = document.getElementById("user");
+    user.textContent = userFirstName !== null ?  userFirstName : "Guest";
+
+    let welcomeParagraph = document.getElementById("welcome-guest");
+    welcomeParagraph.innerHTML =  userFirstName !== null ? `${userFirstName} ${userlastName}` : "Guest";
+    
+
+    document.getElementById("usernameId").textContent = userFirstName !== null ? `${userFirstName}  ${userlastName}` : "Guest"
 
 
+
+    document.getElementById('logOutBtn').addEventListener('click', function() {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userFirstName');
+        localStorage.removeItem('userLastName');
+        window.location.href = 'www.google.com';
+    });
+ }
+ if(document.querySelector("#assessmentPage")){
+    let userFirstName = localStorage.getItem('userFirstName');
+    let userlastName = localStorage.getItem('userLastName');
+ 
+    let userName = document.getElementById("userName");
+    userName.innerHTML =  userFirstName !== null ? `${userFirstName}  ${userlastName}` : "Guest";
+
+    let user = document.getElementById("user");
+    user.textContent = userFirstName !== null ?  userFirstName : "Guest";
+
+    let welcomeParagraph = document.getElementById("welcome-guest");
+    welcomeParagraph.innerHTML =  userFirstName !== null ? `${userFirstName} ${userlastName}` : "Guest";
+    
+
+    document.getElementById("usernameId").textContent = userFirstName !== null ? `${userFirstName}  ${userlastName}` : "Guest"
+
+
+
+    document.getElementById('logOutBtn').addEventListener('click', function() {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userFirstName');
+        localStorage.removeItem('userLastName');
+        window.location.href = '../index.html';
+    });
+ }
+
+
+ if(document.querySelector("#instructor-dashboard")){
+    alert("You are in the Instructor Dashboard")
+    let userFirstName = localStorage.getItem('userFirstName');
+    let userlastName = localStorage.getItem('userLastName');
+ 
+    let user = document.getElementById("user");
+    user.textContent = userFirstName !== null ?  userFirstName : "Guest";
+
+
+    document.getElementById('logOutBtn').addEventListener('click', function() {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userFirstName');
+        localStorage.removeItem('userLastName');
+        window.location.href = '../index.html';
+    });
+ }
+ if(document.querySelector("#start-lesson")){
+    alert("You are in the Instructor Dashboard")
+    let userFirstName = localStorage.getItem('userFirstName');
+    let userlastName = localStorage.getItem('userLastName');
+ 
+    let user = document.getElementById("user");
+    user.textContent = userFirstName !== null ?  userFirstName : "Guest";
+
+
+    document.getElementById('logOutBtn').addEventListener('click', function() {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userFirstName');
+        localStorage.removeItem('userLastName');
+        window.location.href = '../index.html';
+    });
+ }
+ if(document.querySelector("#view-course")){
+    alert("You are in the instructor viewcourse ")
+    let userFirstName = localStorage.getItem('userFirstName');
+    let userlastName = localStorage.getItem('userLastName');
+ 
+    let user = document.getElementById("user");
+    user.textContent = userFirstName !== null ?  userFirstName : "Guest";
+
+
+    document.getElementById('logOutBtn').addEventListener('click', function() {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userFirstName');
+        localStorage.removeItem('userLastName');
+        window.location.href = '../index.html';
+    });
+ }
+
+ if(document.querySelector(".pay-sec")){
+    
+    let userEmail = localStorage.getItem('userEmail');
+    // Function to initialize payment
+    function initializePayment() {
+        // Replace 'your_public_key' with your actual Paystack public key
+        let publicKey = 'pk_test_3444178a2e2dda33f778668a54dc53bc712d04a3';
+        let email = userEmail; // Get the user's email dynamically
+        let amount = 44900; // Amount in kobo (44900 kobo = ₦449)
+        let metadata = {
+            custom_fields: [
+                {
+                    display_name: "Course Name",
+                    variable_name: "course_name",
+                    value: "NCFE CACHE Level 2 Certificate in the care and Management of Diabetes"
+                }
+            ]
+        };
+
+        // Initialize payment
+        PaystackPop.setup({
+            key: publicKey,
+            email: email,
+            amount: amount,
+            metadata: metadata,
+            currency: "NGN", // Change to appropriate currency code
+            ref: "ARTS-" + Math.floor((Math.random() * 1000000000) + 1), // Unique reference
+            callback: function (response) {
+                // Callback function after payment is completed
+                console.log(response);
+                alert('Payment successful. Transaction reference: ' + response.reference);
+            },
+            onClose: function () {
+                alert('Payment window closed.');
+            }
+        }).openIframe();
+    }
+
+    // Add click event listener to the "Proceed with payment" link
+    document.addEventListener('DOMContentLoaded', function () {
+        var proceedLink = document.querySelector('.pay-Check-top a');
+        if (proceedLink) {
+            proceedLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                initializePayment();
+            });
+        }
+    });
  }
 
