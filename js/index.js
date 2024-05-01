@@ -72,53 +72,54 @@ document.getElementById('submitBtn').addEventListener('click', function(event) {
 }
 
 
-if (document.querySelector("#logInForm")){
-    
+if (document.querySelector("#logInForm")) {
     document.getElementById('signInBtn').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-      alert("You clicked to sign in")
-      alert("You have just let's see if we can let you sign in")
-    // Get form data
-    let formData = {
-        password : document.getElementById("logPass").value,
-        email : document.getElementById("logEmail").value
-    };
+        event.preventDefault(); // Prevent the default form submission
+        
+        // Change button text to "Signing in..."
+        document.getElementById('signInBtn').textContent = 'Signing in...';
 
-    // Send POST request using fetch API
-    fetch('https://new-arts-api.onrender.com/user/login/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    })
-    .then(response => {
-        if (response.ok) {
-             // Save response details to local storage
-            response.json().then(data => {
+        // Get form data
+        let formData = {
+            password: document.getElementById("logPass").value,
+            email: document.getElementById("logEmail").value
+        };
+
+        // Send POST request using fetch API
+        fetch('https://new-arts-api.onrender.com/user/login/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => {
+            if (response.ok) {
+                // Save response details to local storage
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            // Handle successful login
             localStorage.setItem('accessToken', data.access_token);
             localStorage.setItem('userId', data.user_id);
             localStorage.setItem('userFirstName', data.user_first_name);
             localStorage.setItem('userLastName', data.user_last_name);
             localStorage.setItem('userEmail', data.user_email);
-            });
+            // Redirect to courses page
             window.location.href = coursesPage;
-            return response.json();
-            
-        }
-        throw new Error('Network response was not ok.');
-    })
-    .then(data => {
-        // Handle response data
-        console.log(data);
-    })
-    .catch(error => {
-        // Handle errors
-        alert("login Error")
-        console.error('There was a problem with the fetch operation:', error);
+        })
+        .catch(error => {
+            // Handle login errors
+            alert("Incorrect email or password");
+            console.error('There was a problem with the fetch operation:', error);
+            // Change button text back to "Sign in"
+            document.getElementById('signInBtn').textContent = 'Sign in';
+        });
     });
-});
 }
+
 
 if (document.querySelector("#joinForFreeBtn")) {
     console.log("Join for free Button Found");
@@ -206,6 +207,7 @@ if( document.querySelector("#dashboard")){
         window.location.href = 'www.google.com';
     });
  }
+
  if(document.querySelector("#assessmentPage")){
     let userFirstName = localStorage.getItem('userFirstName');
     let userlastName = localStorage.getItem('userLastName');
