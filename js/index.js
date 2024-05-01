@@ -28,47 +28,49 @@ document.getElementById("signUpBtn").addEventListener("click", function() {
 });
 }
 
-if (document.querySelector("#submitBtn")){
-document.getElementById('submitBtn').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const email = urlParams.get('email');
-    
-    // Get form data
-    let formData = {
-        first_name: document.getElementById('firstName').value,
-        last_name : document.getElementById("lastName").value,
-        password : document.getElementById("password").value,
-        email : email
-        // Add other form fields similarly
-    };
+if (document.querySelector("#signUpBtn")) {
+    document.getElementById('signUpBtn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default form submission
 
-    // Send POST request using fetch API
-    fetch('https://new-arts-api.onrender.com/user/create/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    })
-    .then(response => {
-        if (response.ok) {
-            window.location.href = loginPage;
-            return response.json();
-            
-        }
-        throw new Error('Network response was not ok.');
-    })
-    .then(data => {
-        // Handle response data
-        console.log(data);
-    })
-    .catch(error => {
-        // Handle errors
-        console.error('There was a problem with the fetch operation:', error);
+        // Change button text to "Signing up..."
+        document.getElementById('signUpBtn').textContent = 'Signing up...';
+
+        // Get form data
+        let formData = {
+            first_name: document.getElementById('firstName').value,
+            last_name: document.getElementById("lastName").value,
+            password: document.getElementById("password").value,
+            email: document.getElementById("signUpEmail").value
+            // Add other form fields similarly
+        };
+
+        // Send POST request using fetch API
+        fetch('https://new-arts-api.onrender.com/user/create/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => {
+            if (response.ok) {
+                // Redirect to login page on successful signup
+                window.location.href = loginPage;
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            // Handle response data
+            console.log(data);
+        })
+        .catch(error => {
+            // Handle signup errors
+            console.error('There was a problem with the fetch operation:', error);
+            // Change button text back to "Sign up HERE"
+            document.getElementById('signUpBtn').textContent = 'Sign up HERE';
+        });
     });
-});
 }
 
 
