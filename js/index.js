@@ -32,6 +32,13 @@ if (document.querySelector("#signUpBtn")) {
     document.getElementById('signUpBtn').addEventListener('click', function(event) {
         event.preventDefault(); // Prevent the default form submission
 
+        
+        function getParameterByName(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        let email = getParameterByName('email');
+
         // Change button text to "Signing up..."
         document.getElementById('signUpBtn').textContent = 'Signing up...';
 
@@ -40,7 +47,7 @@ if (document.querySelector("#signUpBtn")) {
             first_name: document.getElementById('firstName').value,
             last_name: document.getElementById("lastName").value,
             password: document.getElementById("password").value,
-            email: document.getElementById("signUpEmail").value
+            email: email
             // Add other form fields similarly
         };
 
@@ -340,3 +347,50 @@ if( document.querySelector("#dashboard")){
     });
  }
 
+
+ if (document.querySelector('#restpword')) {
+
+     function getParameterByName(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+    let resetToken = getParameterByName('reset_token');
+    let email = getParameterByName('email');
+    let password = document.getElementById('passwordResetBtn').value;
+    
+    document.getElementById('restBtn').addEventListener('click', function(event) {
+        event.preventDefault();
+          
+          // Change button text to "Signing in..."
+          document.getElementById('restBtn').textContent = 'Resetting Password...';
+  
+          // Get form data
+          let data = {
+              reset_token: resetToken,
+              password: password,
+              email: email
+          };
+  
+          // Send POST request using fetch API
+          fetch('https://new-arts-api.onrender.com/user/password/reset/confirm/', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(data),
+          })
+          .then(response => {
+              if (response.ok) {
+                  window.location.href = loginPage;
+                  return response.json();
+              }
+              throw new Error('Network response was not ok.');
+          })
+          .catch(error => {
+              console.error('There was a problem with the fetch operation:', error);
+              alert("Incorrect email or password");
+              document.getElementById('restBtn').textContent = 'New Password';
+          });
+      });
+    
+}
