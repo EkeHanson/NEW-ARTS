@@ -415,6 +415,7 @@ if (document.querySelector("#admin-dshboard")) {
             formData.append('image', image);
     
             // Send POST request using fetch API
+            document.getElementById('submit-category').textContent = "Submitting ..."
             fetch('https://new-arts-api.onrender.com/course/categories/', {
                 method: 'POST',
                 body: formData,
@@ -422,6 +423,7 @@ if (document.querySelector("#admin-dshboard")) {
             .then(response => {
                 if (response.ok) {
                     // Category created successfully
+                    document.getElementById('submit-category').textContent = "Submitting"
                     window.location.href = "courses.html";
                 } else {
                     // Error handling
@@ -429,6 +431,7 @@ if (document.querySelector("#admin-dshboard")) {
                 }
             })
             .catch(error => {
+                document.getElementById('submit-category').textContent = "Submitting"
                 console.error('Error:', error);
                 alert('An error occurred while creating the category.');
             });
@@ -455,6 +458,7 @@ if (document.querySelector("#admin-dshboard")) {
             formData.append('image', image);
     
             // Send POST request using fetch API
+            document.getElementById('submit-instructor').textContent = "Submitting ..."
             fetch('https://new-arts-api.onrender.com/course/instructors/', {
                 method: 'POST',
                 body: formData,
@@ -462,6 +466,7 @@ if (document.querySelector("#admin-dshboard")) {
             .then(response => {
                 if (response.ok) {
                     // Category created successfully
+                    document.getElementById('submit-instructor').textContent = "Submitting"
                     window.location.href = "instructors.html";
                 } else {
                     // Error handling
@@ -469,65 +474,176 @@ if (document.querySelector("#admin-dshboard")) {
                 }
             })
             .catch(error => {
+                document.getElementById('submit-instructor').textContent = "Submitting"
                 console.error('Error:', error);
                 alert('An error occurred while creating the instructors.');
             });
         });
 
 
-    };
+        //COURSES
+        // Fetch data from the Category API endpoint // Fetch data from the Instructors API endpoint
+            fetch('https://new-arts-api.onrender.com/course/instructors/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Get the select element
+                const selectElement = document.querySelector('#selectInstructor');
 
+                // Loop through the categories and create options
+                data.forEach(instructor => {
+                    const optionElement = document.createElement('option');
+                    optionElement.textContent = `${instructor.instructor_last_name} ${instructor.instructor_id}` ; // Use category name as option text
+                    optionElement.value = instructor.id; // Optionally, set the value of each option
+                    selectElement.appendChild(optionElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+                        // Fetch categories
+            fetch('https://new-arts-api.onrender.com/course/categories/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const selectElement = document.querySelector('#selectCategory');
+                data.forEach(category => {
+                    const optionElement = document.createElement('option');
+                    optionElement.textContent = category.name;
+                    optionElement.value = category.id;
+                    selectElement.appendChild(optionElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching categories:', error);
+            });
 
-    
+            // Handle form submission
+            document.getElementById('submit-course').addEventListener('click', function(event) {
+            event.preventDefault();
 
-//     document.getElementById('submit-instructor').addEventListener('click', function(event) {
-//         event.preventDefault();
+            // Get form data
+            const category = document.querySelector('#selectCategory').value;
+            const instructor = document.querySelector('#selectInstructor').value;
+            const course_description = document.getElementById('course-description').value;
+            const course_title = document.getElementById('course-title').value;
+            const course_price = document.getElementById('course-price').value;
+            const course_duration = document.getElementById('course-duration').value;
 
-//         // Change button text to "Creating Category..."
-//         document.getElementById('submit-instructor').textContent = 'Creating Instructor...';
+            const formData = new FormData();
+            formData.append('category', category);
+            formData.append('title', course_title);
+            formData.append('details', course_description);
+            formData.append('amount', course_price);
+            formData.append('duration', course_duration);
+            formData.append('instructor', instructor);
 
-//         // Get form data
-//         // let instructor_id = document.getElementById('instructor-id').value;
-//         let instructor_email = document.getElementById('instructor-email').value;
-//         let instructor_first_name = document.getElementById('instructor-first-name').value;
-//         let instructor_last_name = document.getElementById('instructor-last-name').value;
-//         let imageInput = document.getElementById('instructor-image');
-//         let image = null;
+            // Send POST request using fetch API
+            fetch('https://new-arts-api.onrender.com/course/', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('submit-course').textContent = "Submit";
+                    window.location.href = "courses.html";
+                } else {
+                    throw new Error('Failed to create Course');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while creating the Course.');
+                document.getElementById('submit-course').textContent = "Submit";
+            });
+            });
 
-//         if (imageInput.files.length > 0) {
-//             // If a file has been selected, use the first file
-//             image = imageInput.files[0];
-//         } else {
-//             // Handle case where no file has been selected
-//             alert("Please select an image for the category.");
-//             return; // Exit the function early
-//         }
+    // Add event listener to the select element
+    document.querySelector('#selctionSchedule').addEventListener('change', function(event) {
+        // Get the selected category value
+        const selectedCategory = event.target.value;
 
-//         let formData = new FormData();
-//         // formData.append('instructor_id', instructor_id);
-//         formData.append('instructor_email', instructor_email);
-//         formData.append('instructor_first_name', instructor_first_name);
-//         formData.append('instructor_last_name', instructor_last_name);
-//         formData.append('image', image);
+        // Get all list items under the schedule
+        const scheduleItems = document.querySelectorAll('.schedule-dlt-main ul li');
 
-//         // Send POST request using fetch API
-//         fetch('http://127.0.0.1:9090/course/instructors/', {
-//             method: 'POST',
-//             body: formData,
-//         })
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json();
-//             }
-//             throw new Error('Network response was not ok.');
-//         })
-//         .then(data => {
-//             window.location.href = "instuctors.html";
-//             console.log(data);
-//         })
-//         .catch(error => {
-//             // Handle errors
-//             console.error('There was a problem with the fetch operation:', error);
-//             alert("An error occurred while creating the category.");
-//         });
-//     });
+        // Hide all schedule items
+        scheduleItems.forEach(item => {
+            item.style.display = 'none';
+        });
+
+        // Show the specific schedule items based on the selected category
+        if (selectedCategory === '1') {
+            // Show items for option 1
+            scheduleItems[0].style.display = 'block'; // Show Day 1
+        } else if (selectedCategory === '2') {
+            // Show items for option 2
+            scheduleItems[0].style.display = 'block'; // Show Day 1
+            scheduleItems[1].style.display = 'block'; // Show Day 2
+            // You can add more conditions for other options as needed
+        } else if (selectedCategory === '3') {
+            // Show items for option 3
+            scheduleItems[0].style.display = 'block'; // Show Day 1
+            scheduleItems[1].style.display = 'block'; // Show Day 2
+            scheduleItems[2].style.display = 'block'; // Show Day 2
+            // You can add more conditions for other options as needed
+        } else if (selectedCategory === '4') {
+            // Show items for option 4
+            scheduleItems[0].style.display = 'block'; // Show Day 1
+            scheduleItems[1].style.display = 'block'; // Show Day 2
+            scheduleItems[2].style.display = 'block'; // Show Day 2
+            scheduleItems[3].style.display = 'block'; // Show Day 2
+            // You can add more conditions for other options as needed
+        } else if (selectedCategory === '5') {
+            // Show items for option 5
+            scheduleItems[0].style.display = 'block'; // Show Day 1
+            scheduleItems[1].style.display = 'block'; // Show Day 2
+            scheduleItems[2].style.display = 'block'; // Show Day 2
+            scheduleItems[3].style.display = 'block'; // Show Day 2
+            scheduleItems[4].style.display = 'block'; // Show Day 2
+            // You can add more conditions for other options as needed
+        } else if (selectedCategory === '6') {
+            // Show items for option 6
+            scheduleItems[0].style.display = 'block'; // Show Day 1
+            scheduleItems[1].style.display = 'block'; // Show Day 2
+            scheduleItems[2].style.display = 'block'; // Show Day 2
+            scheduleItems[3].style.display = 'block'; // Show Day 2
+            scheduleItems[5].style.display = 'block'; // Show Day 2
+            scheduleItems[6].style.display = 'block'; // Show Day 2
+        }
+    });
+
+    // Initialize an object to store the schedule data
+const scheduleData = {
+    day1: {},
+    day2: {},
+    day3: {},
+    day4: {},
+    day5: {},
+    day6: {}
+};
+
+    // Add event listeners to date and time inputs for each day
+    document.querySelectorAll('.hak-dlt-input').forEach((input, index) => {
+        input.addEventListener('change', function(event) {
+            // Get the day number from the input's parent li index
+            const dayNumber = index + 1;
+            
+            // Get the type of input (date or time)
+            const inputType = input.getAttribute('type');
+            
+            // Store the value in the scheduleData object
+            scheduleData[`day${dayNumber}`][inputType] = event.target.value;
+            
+            console.log(scheduleData);
+        });
+    });
+
+    }
