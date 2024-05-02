@@ -36,50 +36,6 @@
 </head>
 <body>
 
-    <section class="upload-Sec instructor-Box">
-        <div class="upload-Box">
-            <div class="upload-Box-header">
-                <h3>Add Instructor</h3>
-                <span class="Close-Upload-Box"><i class="ti-close"></i></span>
-            </div>
-            <div class="upload-Box-body">
-                <form>
-                    <div class="input-Div">
-                        <p>Instructor ID</p>
-                        <input type="text" name="" value="ARTS ID: 000761IS">
-                    </div>
-                    <div class="input-Div">
-                        <p>Email</p>
-                        <input type="text" name="" placeholder="Enter email address">
-                    </div>
-                    <div class="Dd-Flex">
-                    <div class="input-Div">
-                        <p>First name</p>
-                        <input type="text" name="" placeholder="Enter first name">
-                    </div>
-                    <div class="input-Div">
-                        <p>Last name</p>
-                        <input type="text" name="" placeholder="Enter last name">
-                    </div>
-                </div>
-                     <div class="input-Div">
-                        <p>Upload profile image</p>
-                        <input type="file" name="">
-                    </div>
-
-                    <div class="Submit-Div">
-                        <input type="submit" name="" value="Submit">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-
-
-
-
-
     <section class="site-content">
         <div class="nav-sec">
             <div class="nav-sec-main Box-Show">
@@ -107,9 +63,9 @@
                             </li>
 
 
-                              <li><a href="enrolled-courses.html"><i class="icon-book-open"></i> <span>Enrolled courses</span> </a></li>
+                              <li class="active-sideIcon"><a href="enrolled-courses.html"><i class="icon-book-open"></i> <span>Enrolled courses</span> </a></li>
 
-                              <li class="active-sideIcon"><a href="instructors.html"><i class="icon-badge"></i> <span>Instructors</span> </a></li>
+                              <li><a href="instructors.html"><i class="icon-badge"></i> <span>Instructors</span> </a></li>
 
                                <li><a href="users.html"><i class="icon-people"></i> <span>Users</span> </a></li>
 
@@ -171,11 +127,11 @@
 
                     <div class="affiliate-Sec Box-Show">
                        <div class="hello-intro">
-                              <h1>Instructors</h1>
+                              <h1>Enrolled courses</h1>
                                     <ul>
                                       <li>A.R.T.S</li>
                                       <li>Admin</li>
-                                      <li class="active-li">Instructors</li>
+                                      <li class="active-li">Enrolled courses</li>
                                     </ul>
                                </div>
 
@@ -190,7 +146,7 @@
                                 <div class="p-Main-tt">
                                 <p>Search</p>
                                 <div class="p-Main-t-search">
-                                    <input type="text" name="" placeholder="Instructors"/>
+                                    <input type="text" name="" placeholder="Enrolled courses"/>
                                     <button><img src="svg/search1.svg"></button>
                                 </div>
                             </div>
@@ -204,8 +160,8 @@
 
                         <div class="affiliate-Sec Box-Show">
                        <div class="top-das-1-header">
-                            <h3>List of instructors</h3>
-                            <button class="instructor-Btn"><i class="fa fa-plus"></i> add instructor</button>
+                            <h3>List of Enrolled courses</h3>
+                            <p>Enrolled courses</p>
                         </div>
 
                         <div class="Sec-table">
@@ -213,47 +169,55 @@
                                 <thead>
                                     <tr>
                                         <th>S/N</th>
+                                        <th>Category</th>
+                                        <th>Course title</th>
                                         <th>Instructor</th>
-                                        <th>Allocated courses</th>
-                                        <th>Completed courses</th>
-                                        <th>Pending courses</th>
+                                        <th>Price</th>
+                                        <th>Duration</th>
+                                        <th>Lesson days</th>
+                                        <th>Enrolled users</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+
+                                       <tr>
+                                        <td>1</td>
+                                        <td>Health</td>
+                                        <td>Introcution to health and safety management</td>
+                                         <td>
+                                            <div class="instruc-dlt-main">
+                                          <div class="instruc-profl">
+                                               <div class="instruc-profl-grid">
+                                            <div class="profl-img">
+                                              <div class="profl-img-main">
+                                                <img src="img/staffs/1.jpg">
+                                              <span class="online"></span>
+                                            </div>
+                                              
+                                            </div>
+                                            <div class="profl-dlts">
+                                              <p>Ndubuisi Prince Godson</p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        </td>
+                                        <td> € 400</td>
+                                        <td>1hr 20mins 30sec</td>
+                                        <td>3 days</td>
                                         <td>1</td>
                                         <td>
-                                            <div class="instruc-dlt-main">
-                                          <div class="instruc-profl">
-                                               <div class="instruc-profl-grid">
-                                            <div class="profl-img">
-                                              <div class="profl-img-main">
-                                                <img src="img/staffs/1.jpg">
-                                              <span class="online"></span>
-                                            </div>
-                                              
-                                            </div>
-                                            <div class="profl-dlts">
-                                              <p>Ndubuisi Prince Godson</p>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        </td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>
                                             <div class="action-btns">
-                                                <a href="instructor-profile.html"><i class="icon-user"></i> Profile</a>
-                                                <button><i class="ti-close"></i>  Remove</button>
+                                                <a href="enrolled-users.html" class="courses-Btn"><i class="icon-user"></i> Enrolled users</a>
                                             </div>
                                         </td>
                                     </tr>
 
-                                     <tr>
+                                    <tr>
                                         <td>2</td>
-                                        <td>
+                                        <td>Health</td>
+                                        <td>Introcution to health and safety management</td>
+                                         <td>
                                             <div class="instruc-dlt-main">
                                           <div class="instruc-profl">
                                                <div class="instruc-profl-grid">
@@ -270,78 +234,18 @@
                                           </div>
                                         </div>
                                         </td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
+                                        <td> € 400</td>
+                                        <td>1hr 20mins 30sec</td>
+                                        <td>3 days</td>
+                                        <td>40</td>
                                         <td>
                                             <div class="action-btns">
-                                                <a href="instructor-profile.html"><i class="icon-user"></i> Profile</a>
-                                                <button><i class="ti-close"></i>  Remove</button>
+                                                <a href="enrolled-users.html" class="courses-Btn"><i class="icon-user"></i> Enrolled users</a>
                                             </div>
                                         </td>
                                     </tr>
 
-                                     <tr>
-                                        <td>3</td>
-                                        <td>
-                                            <div class="instruc-dlt-main">
-                                          <div class="instruc-profl">
-                                               <div class="instruc-profl-grid">
-                                            <div class="profl-img">
-                                              <div class="profl-img-main">
-                                                <img src="img/staffs/1.jpg">
-                                              <span class="online"></span>
-                                            </div>
-                                              
-                                            </div>
-                                            <div class="profl-dlts">
-                                              <p>Ndubuisi Prince Godson</p>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        </td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>
-                                            <div class="action-btns">
-                                                <a href="instructor-profile.html"><i class="icon-user"></i> Profile</a>
-                                                <button><i class="ti-close"></i>  Remove</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-
-                                     <tr>
-                                        <td>4</td>
-                                        <td>
-                                            <div class="instruc-dlt-main">
-                                          <div class="instruc-profl">
-                                               <div class="instruc-profl-grid">
-                                            <div class="profl-img">
-                                              <div class="profl-img-main">
-                                                <img src="img/staffs/1.jpg">
-                                              <span class="online"></span>
-                                            </div>
-                                              
-                                            </div>
-                                            <div class="profl-dlts">
-                                              <p>Ndubuisi Prince Godson</p>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        </td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>
-                                            <div class="action-btns">
-                                                <a href="instructor-profile.html"><i class="icon-user"></i> Profile</a>
-                                                <button><i class="ti-close"></i>  Remove</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
+                                    
                                 </tbody>
                             </table>
                         </div>

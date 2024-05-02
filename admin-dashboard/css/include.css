@@ -981,7 +981,7 @@ p,ul,li,h1,h2,h3,h4,h5,h6,label,a{
     transition: all 0.3s ease-in-out;
 }
 .p-Main-t-search button:hover{
-    background: #652BFF;
+    background:#0042CC;
 }
 .p-Main-t-search button img{
     width: 20px;
