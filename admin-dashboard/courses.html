@@ -46,44 +46,44 @@
                 <form>
                     <div class="input-Div">
                         <p>Course category</p>
-                        <select>
+                        <select id="selectCategory">
                             <option>Select course category</option>
-                            <option>Health</option>
-                            <option>ICT</option>
+                            <!-- <option>Health</option>
+                            <option>ICT</option> -->
                         </select>
                     </div>
                     <div class="input-Div">
                         <p>Course title</p>
-                        <input type="text" name="" placeholder="Enter course title">
+                        <input id="course-title" type="text" name="" placeholder="Enter course title">
                     </div>
 
                      <div class="input-Div">
                         <p>Course description</p>
-                        <textarea placeholder="Enter course description"></textarea>
+                        <textarea  id="course-description" placeholder="Enter course description"></textarea>
                     </div>
                     <div class="Dd-Flex">
                         <div class="input-Div">
                         <p>Course instructor</p>
-                        <select>
+                        <select id="selectInstructor">
                             <option>Select course instructor</option>
-                            <option>Prince Godson</option>
-                            <option>Daniel Eke</option>
+                            <!-- <option>Prince Godson</option>
+                            <option>Daniel Eke</option> -->
                         </select>
                     </div>
                     <div class="input-Div">
                         <p>Price</p>
-                        <input type="text" name="" placeholder="Enter course price (€)">
+                        <input  id="course-price" type="text" name="" placeholder="Enter course price (€)">
                     </div>
                 </div>
                       <div class="input-Div">
                         <p>Course duration</p>
-                        <input type="text" name="" placeholder="Enter course duration">
+                        <input id="course-duration" type="text" name="" placeholder="Enter course duration">
                     </div>
 
 
                       <div class="input-Div">
                         <p>Lesson days</p>
-                        <select>
+                        <select id="selctionSchedule">
                             <option>Select lesson days</option>
                             <option>1 day</option>
                             <option>2 day</option>
@@ -344,8 +344,8 @@
                                 </thead>
                                 <tbody>
 
-                                       <tr>
-                                        <td>1</td>
+                                       <!-- <tr> -->
+                                        <!-- <td>1</td>
                                         <td>Health</td>
                                         <td>Introcution to health and safety management</td>
                                          <td>
@@ -375,41 +375,9 @@
                                                 <button><i class="ti-close"></i>  Remove</button>
                                             </div>
                                         </td>
-                                    </tr>
+                                    </tr> -->
 
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Health</td>
-                                        <td>Introcution to health and safety management</td>
-                                         <td>
-                                            <div class="instruc-dlt-main">
-                                          <div class="instruc-profl">
-                                               <div class="instruc-profl-grid">
-                                            <div class="profl-img">
-                                              <div class="profl-img-main">
-                                                <img src="img/staffs/1.jpg">
-                                              <span class="online"></span>
-                                            </div>
-                                              
-                                            </div>
-                                            <div class="profl-dlts">
-                                              <p>Ndubuisi Prince Godson</p>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        </td>
-                                        <td> € 400</td>
-                                        <td>1hr 20mins 30sec</td>
-                                        <td>3 days</td>
-                                        <td>0</td>
-                                        <td>
-                                            <div class="action-btns">
-                                                <a href="javascript:void(0);" style="background:#6FD96F !important;" class="courses-Btn"><i class="icon-user"></i> Edit</a>
-                                                <button><i class="ti-close"></i>  Remove</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
+                                    
                                     
                                 </tbody>
                             </table>
@@ -465,5 +433,258 @@
      <script src="js/main.js"></script>
          <script src='js/chart.js'></script>
     <script src="js/chat-canvas.js"></script>
+    <script>
+
+//COURSES
+        // Fetch data from the Category API endpoint // Fetch data from the Instructors API endpoint
+        fetch('https://new-arts-api.onrender.com/course/instructors/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Get the select element
+                const selectElement = document.querySelector('#selectInstructor');
+
+                // Loop through the categories and create options
+                data.forEach(instructor => {
+                    const optionElement = document.createElement('option');
+                    optionElement.textContent = `${instructor.instructor_last_name} ${instructor.instructor_id}` ; // Use category name as option text
+                    optionElement.value = instructor.id; // Optionally, set the value of each option
+                    selectElement.appendChild(optionElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+                        // Fetch categories
+            fetch('https://new-arts-api.onrender.com/course/categories/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const selectElement = document.querySelector('#selectCategory');
+                data.forEach(category => {
+                    const optionElement = document.createElement('option');
+                    optionElement.textContent = category.name;
+                    optionElement.value = category.id;
+                    selectElement.appendChild(optionElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching categories:', error);
+            });
+
+            // Handle form submission
+            document.getElementById('submit-course').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // Get form data
+            const category = document.querySelector('#selectCategory').value;
+            const instructor = document.querySelector('#selectInstructor').value;
+            const course_description = document.getElementById('course-description').value;
+            const course_title = document.getElementById('course-title').value;
+            const course_price = document.getElementById('course-price').value;
+            const course_duration = document.getElementById('course-duration').value;
+
+            const formData = new FormData();
+            formData.append('category', category);
+            formData.append('title', course_title);
+            formData.append('details', course_description);
+            formData.append('amount', course_price);
+            formData.append('duration', course_duration);
+            formData.append('instructor', instructor);
+
+            // Send POST request using fetch API
+            fetch('https://new-arts-api.onrender.com/course/', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('submit-course').textContent = "Submit";
+                    window.location.href = "courses.html";
+                } else {
+                    throw new Error('Failed to create Course');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while creating the Course.');
+                document.getElementById('submit-course').textContent = "Submit";
+            });
+            });
+
+    // Add event listener to the select element
+    document.querySelector('#selctionSchedule').addEventListener('change', function(event) {
+        // Get the selected category value
+        const selectedCategory = event.target.value;
+
+        // Get all list items under the schedule
+        const scheduleItems = document.querySelectorAll('.schedule-dlt-main ul li');
+
+        // Hide all schedule items
+        scheduleItems.forEach(item => {
+            item.style.display = 'none';
+        });
+
+        // Show the specific schedule items based on the selected category
+        if (selectedCategory === '1') {
+            // Show items for option 1
+            scheduleItems[0].style.display = 'block'; // Show Day 1
+        } else if (selectedCategory === '2') {
+            // Show items for option 2
+            scheduleItems[0].style.display = 'block'; // Show Day 1
+            scheduleItems[1].style.display = 'block'; // Show Day 2
+            // You can add more conditions for other options as needed
+        } else if (selectedCategory === '3') {
+            // Show items for option 3
+            scheduleItems[0].style.display = 'block'; // Show Day 1
+            scheduleItems[1].style.display = 'block'; // Show Day 2
+            scheduleItems[2].style.display = 'block'; // Show Day 2
+            // You can add more conditions for other options as needed
+        } else if (selectedCategory === '4') {
+            // Show items for option 4
+            scheduleItems[0].style.display = 'block'; // Show Day 1
+            scheduleItems[1].style.display = 'block'; // Show Day 2
+            scheduleItems[2].style.display = 'block'; // Show Day 2
+            scheduleItems[3].style.display = 'block'; // Show Day 2
+            // You can add more conditions for other options as needed
+        } else if (selectedCategory === '5') {
+            // Show items for option 5
+            scheduleItems[0].style.display = 'block'; // Show Day 1
+            scheduleItems[1].style.display = 'block'; // Show Day 2
+            scheduleItems[2].style.display = 'block'; // Show Day 2
+            scheduleItems[3].style.display = 'block'; // Show Day 2
+            scheduleItems[4].style.display = 'block'; // Show Day 2
+            // You can add more conditions for other options as needed
+        } else if (selectedCategory === '6') {
+            // Show items for option 6
+            scheduleItems[0].style.display = 'block'; // Show Day 1
+            scheduleItems[1].style.display = 'block'; // Show Day 2
+            scheduleItems[2].style.display = 'block'; // Show Day 2
+            scheduleItems[3].style.display = 'block'; // Show Day 2
+            scheduleItems[5].style.display = 'block'; // Show Day 2
+            scheduleItems[6].style.display = 'block'; // Show Day 2
+        }
+    });
+
+    // Initialize an object to store the schedule data
+const scheduleData = {
+    day1: {},
+    day2: {},
+    day3: {},
+    day4: {},
+    day5: {},
+    day6: {}
+};
+
+    // Add event listeners to date and time inputs for each day
+    document.querySelectorAll('.hak-dlt-input').forEach((input, index) => {
+        input.addEventListener('change', function(event) {
+            // Get the day number from the input's parent li index
+            const dayNumber = index + 1;
+            
+            // Get the type of input (date or time)
+            const inputType = input.getAttribute('type');
+            
+            // Store the value in the scheduleData object
+            scheduleData[`day${dayNumber}`][inputType] = event.target.value;
+            
+            console.log(scheduleData);
+        });
+    });
+
+    </script>
+
+    <script>
+
+        // Send a GET request to the endpoint
+
+        // Fetch category information// Fetch category information and update the image
+fetch('https://new-arts-api.onrender.com/course/')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Select the table body element where you want to append the data
+    const tableBody = document.querySelector('tbody');
+
+    // Iterate over the data and create table rows
+    data.forEach(course => {
+      // Fetch category information
+      fetch(`https://new-arts-api.onrender.com/course/categories/${course.category}/`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch category information');
+          }
+          return response.json();
+        })
+        .then(categoryData => {
+          // Extract the image URL from the category data
+          const categoryImageURL = categoryData.image;
+          console.log(categoryData.name)
+          console.log(categoryImageURL)
+
+          // Create a new table row
+          const newRow = document.createElement('tr');
+
+          // Fill the table row with course data
+          newRow.innerHTML = `
+            <td>${course.id}</td>
+            <td>${categoryData.name}</td>
+            <td>${course.title}</td>
+            <td>
+              <div class="instruc-dlt-main">
+                <div class="instruc-profl">
+                  <div class="instruc-profl-grid">
+                    <div class="profl-img">
+                      <div class="profl-img-main">
+                        <img src="https://new-arts-api.onrender.com/${categoryImageURL}"" alt="${categoryData.name}">
+                        <span class="online"></span>
+                      </div>
+                    </div>
+                    <div class="profl-dlts">
+                      <p>${course.title}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>${course.amount}</td>
+            <td>${course.duration} hours</td>
+            <td>${course.duration} days</td>
+            <td>${course.number_of_students !== null ? course.number_of_students : 0}</td>
+            <td>
+              <div class="action-btns">
+                <a href="javascript:void(0);" style="background:#6FD96F !important;" class="courses-Btn"><i class="icon-user"></i> Edit</a>
+                <button><i class="ti-close"></i>  Remove</button>
+              </div>
+            </td>
+          `;
+
+          // Append the new row to the table body
+          tableBody.appendChild(newRow);
+        })
+        .catch(error => {
+          console.error('Error fetching category information:', error);
+        });
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+
+
+    </script>
+
    </body>
    </html>
