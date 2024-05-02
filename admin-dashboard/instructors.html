@@ -50,25 +50,25 @@
                     </div>
                     <div class="input-Div">
                         <p>Email</p>
-                        <input type="text" name="" placeholder="Enter email address">
+                        <input id="instructor-email" type="text" name="" placeholder="Enter email address">
                     </div>
                     <div class="Dd-Flex">
                     <div class="input-Div">
                         <p>First name</p>
-                        <input type="text" name="" placeholder="Enter first name">
+                        <input id="instructor-first-name" type="text" name="" placeholder="Enter first name">
                     </div>
                     <div class="input-Div">
                         <p>Last name</p>
-                        <input type="text" name="" placeholder="Enter last name">
+                        <input id="instructor-last-name" type="text" name="" placeholder="Enter last name">
                     </div>
                 </div>
                      <div class="input-Div">
                         <p>Upload profile image</p>
-                        <input type="file" name="">
+                        <input id="instructor-image" type="file" name="" accept="image/">
                     </div>
 
                     <div class="Submit-Div">
-                        <input type="submit" name="" value="Submit">
+                        <input id="submit-instructor" type="submit" name="" value="Submit">
                     </div>
                 </form>
             </div>
@@ -458,6 +458,52 @@
             })
             .catch(error => console.error('Error fetching data:', error));
     </script>
+    <script>
+
+
+
+// Add event listener to the form submission
+document.getElementById('submit-instructor').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default form submission behavior
     
+            // Get form data
+            let instructor_email = document.getElementById('instructor-email').value;
+            let instructor_first_name = document.getElementById('instructor-first-name').value;
+            let instructor_last_name = document.getElementById('instructor-last-name').value;
+            let imageInput = document.getElementById('instructor-image');
+            let image = imageInput.files[0];
+            
+
+            // Create a FormData object
+            let formData = new FormData();
+            formData.append('email', instructor_email);
+            formData.append('instructor_first_name', instructor_first_name);
+            formData.append('instructor_last_name', instructor_last_name);
+            formData.append('image', image);
+    
+            // Send POST request using fetch API
+            document.getElementById('submit-instructor').textContent = "Submitting ..."
+            fetch('http://127.0.0.1:9090/course/instructors/', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Category created successfully
+                    document.getElementById('submit-instructor').textContent = "Submitting"
+                    window.location.href = "instructors.html";
+                } else {
+                    // Error handling
+                    throw new Error('Failed to create instructor');
+                }
+            })
+            .catch(error => {
+                document.getElementById('submit-instructor').textContent = "Submitting"
+                console.error('Error:', error);
+                alert('An error occurred while creating the instructors.');
+            });
+        });
+
+    </script>
    </body>
    </html>

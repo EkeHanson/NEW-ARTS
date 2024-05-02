@@ -178,15 +178,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>1</td>
                                         <td><a href="mailto:princegodson24@gmail.com" class="email-Ahrf">princegodson24@gmail.com</a></td>
                                         <td>Prince</td>
                                         <td>Godson</td>
                                         <td>0</td>
                                         <td>Mon, 16th May 2023</td>
-                                    </tr>
-
+                                    </tr> -->
+<!-- 
                                      <tr>
                                         <td>2</td>
                                         <td><a href="mailto:princegodson24@gmail.com" class="email-Ahrf">princegodson24@gmail.com</a></td>
@@ -194,16 +194,16 @@
                                         <td>Godson</td>
                                         <td>0</td>
                                         <td>Mon, 16th May 2023</td>
-                                    </tr>
+                                    </tr> -->
 
-                                    <tr>
+                                    <!-- <tr>
                                         <td>3</td>
                                         <td><a href="mailto:princegodson24@gmail.com" class="email-Ahrf">princegodson24@gmail.com</a></td>
                                         <td>Prince</td>
                                         <td>Godson</td>
                                         <td>0</td>
                                         <td>Mon, 16th May 2023</td>
-                                    </tr>
+                                    </tr> -->
 
                                 </tbody>
                             </table>
@@ -259,5 +259,41 @@
      <script src="js/main.js"></script>
          <script src='js/chart.js'></script>
     <script src="js/chat-canvas.js"></script>
+    <script>
+
+        // Fetch data from the endpoint
+fetch('https://new-arts-api.onrender.com/user/create/')
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+})
+.then(data => {
+    // Get the table body element
+    const tbody = document.querySelector('table tbody');
+
+    // Loop through the data and create table rows
+    data.forEach((user, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td><a href="mailto:${user.email}" class="email-Ahrf">${user.email}</a></td>
+            <td>${user.first_name}</td>
+            <td>${user.last_name}</td>
+            <td>0</td>
+            <td>${new Date(user.date_joined).toDateString()}</td>
+        `;
+        tbody.appendChild(row);
+    });
+})
+.catch(error => {
+    console.error('Error fetching data:', error);
+});
+
+    </script>
+  
+
+
    </body>
    </html>
