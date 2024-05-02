@@ -392,5 +392,124 @@ if( document.querySelector("#dashboard")){
               document.getElementById('restBtn').textContent = 'New Password';
           });
       });
+}
+
+if (document.querySelector("#admin-dshboard")) {
+    document.getElementById('submit-category').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        // Change button text to "Creating Category..."
+        document.getElementById('submit-category').textContent = 'Creating Category...';
+
+        // Get form data
+        let name = document.getElementById('category-title').value;
+        let details = document.getElementById('category-description').value;
+        let imageInput = document.getElementById('category-image');
+        let image = null;
+
+        if (imageInput.files.length > 0) {
+            // If a file has been selected, use the first file
+            image = imageInput.files[0];
+        } else {
+            // Handle case where no file has been selected
+            alert("Please select an image for the category.");
+            return; // Exit the function early
+        }
+
+        let formData = new FormData();
+        formData.append('name', name);
+        formData.append('details', details);
+        formData.append('image', image);
+
+        console.log("formData")
+        console.log(formData)
+        console.log("formData")
+
+        // Send POST request using fetch API
+        fetch('https://new-arts-api.onrender.com/course/categories/', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            console.log("DOnE!")
+            window.location.href = "instructors.html";
+            console.log(data);
+        })
+        .catch(error => {
+            // Handle errors
+            console.error('There was a problem with the fetch operation:', error);
+            alert("An error occurred while creating the category.");
+        });
+    });
+
     
+
+//     document.getElementById('submit-instructor').addEventListener('click', function(event) {
+//         event.preventDefault();
+
+//         // Change button text to "Creating Category..."
+//         document.getElementById('submit-instructor').textContent = 'Creating Instructor...';
+
+//         // Get form data
+//         // let instructor_id = document.getElementById('instructor-id').value;
+//         let instructor_email = document.getElementById('instructor-email').value;
+//         let instructor_first_name = document.getElementById('instructor-first-name').value;
+//         let instructor_last_name = document.getElementById('instructor-last-name').value;
+//         let imageInput = document.getElementById('instructor-image');
+//         let image = null;
+
+//         if (imageInput.files.length > 0) {
+//             // If a file has been selected, use the first file
+//             image = imageInput.files[0];
+//         } else {
+//             // Handle case where no file has been selected
+//             alert("Please select an image for the category.");
+//             return; // Exit the function early
+//         }
+
+//         console.log("instructor")
+//         console.log(instructor_email)
+//         console.log(instructor_first_name)
+//         console.log(instructor_last_name)
+//         console.log("instructor")
+
+//         let formData = new FormData();
+//         // formData.append('instructor_id', instructor_id);
+//         formData.append('instructor_email', instructor_email);
+//         formData.append('instructor_first_name', instructor_first_name);
+//         formData.append('instructor_last_name', instructor_last_name);
+//         // formData.append('image', image);
+
+//         console.log("formData");
+//         console.log(formData);
+//         console.log("formData");
+
+//         // Send POST request using fetch API
+//         fetch('http://127.0.0.1:9090/course/instructors/', {
+//             method: 'POST',
+//             body: formData,
+//         })
+//         .then(response => {
+//             if (response.ok) {
+//                 return response.json();
+//             }
+//             throw new Error('Network response was not ok.');
+//         })
+//         .then(data => {
+//             window.location.href = "instuctors.html";
+//             console.log(formData);
+//         })
+//         .catch(error => {
+//             // Handle errors
+//             console.error('There was a problem with the fetch operation:', error);
+//             console.error(formData);
+//             alert(`An error occurred while creating ${formData.instructor_first_name}.`);
+//         });
+//     });
 }
