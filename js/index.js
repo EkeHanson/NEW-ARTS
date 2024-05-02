@@ -399,93 +399,12 @@ if( document.querySelector("#dashboard")){
 
 
 
-if (document.querySelector("#admin-dshboard")) {
+if (document.getElementById("#admin-dashboard")) {
         // Add event listener to the form submission
-        document.getElementById('submit-category').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default form submission behavior
-    
-            // Get form data
-            let name = document.getElementById('category-title').value;
-            let details = document.getElementById('category-description').value;
-            let imageInput = document.getElementById('category-image');
-            let image = imageInput.files[0];
-    
-            // Create a FormData object
-            let formData = new FormData();
-            formData.append('name', name);
-            formData.append('details', details);
-            formData.append('image', image);
-    
-            // Send POST request using fetch API
-            document.getElementById('submit-category').textContent = "Submitting ..."
-            fetch('https://new-arts-api.onrender.com/course/categories/', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Category created successfully
-                    document.getElementById('submit-category').textContent = "Submitting"
-                    window.location.href = "courses.html";
-                } else {
-                    // Error handling
-                    throw new Error('Failed to create category');
-                }
-            })
-            .catch(error => {
-                document.getElementById('submit-category').textContent = "Submitting"
-                console.error('Error:', error);
-                alert('An error occurred while creating the category.');
-            });
-        });
-
-
-        // Add event listener to the form submission
-        document.getElementById('submit-instructor').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default form submission behavior
-    
-            // Get form data
-            let instructor_email = document.getElementById('instructor-email').value;
-            let instructor_first_name = document.getElementById('instructor-first-name').value;
-            let instructor_last_name = document.getElementById('instructor-last-name').value;
-            let imageInput = document.getElementById('instructor-image');
-            let image = imageInput.files[0];
-            
-
-            // Create a FormData object
-            let formData = new FormData();
-            formData.append('email', instructor_email);
-            formData.append('instructor_first_name', instructor_first_name);
-            formData.append('instructor_last_name', instructor_last_name);
-            formData.append('image', image);
-    
-            // Send POST request using fetch API
-            document.getElementById('submit-instructor').textContent = "Submitting ..."
-            fetch('https://new-arts-api.onrender.com/course/instructors/', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Category created successfully
-                    document.getElementById('submit-instructor').textContent = "Submitting"
-                    window.location.href = "instructors.html";
-                } else {
-                    // Error handling
-                    throw new Error('Failed to create instructor');
-                }
-            })
-            .catch(error => {
-                document.getElementById('submit-instructor').textContent = "Submitting"
-                console.error('Error:', error);
-                alert('An error occurred while creating the instructors.');
-            });
-        });
-
-
+        alert("YES")
         //COURSES
         // Fetch data from the Category API endpoint // Fetch data from the Instructors API endpoint
-            fetch('https://new-arts-api.onrender.com/course/instructors/')
+        fetch('https://new-arts-api.onrender.com/course/instructors/')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -567,85 +486,5 @@ if (document.querySelector("#admin-dshboard")) {
                 document.getElementById('submit-course').textContent = "Submit";
             });
             });
-
-    // Add event listener to the select element
-    document.querySelector('#selctionSchedule').addEventListener('change', function(event) {
-        // Get the selected category value
-        const selectedCategory = event.target.value;
-
-        // Get all list items under the schedule
-        const scheduleItems = document.querySelectorAll('.schedule-dlt-main ul li');
-
-        // Hide all schedule items
-        scheduleItems.forEach(item => {
-            item.style.display = 'none';
-        });
-
-        // Show the specific schedule items based on the selected category
-        if (selectedCategory === '1') {
-            // Show items for option 1
-            scheduleItems[0].style.display = 'block'; // Show Day 1
-        } else if (selectedCategory === '2') {
-            // Show items for option 2
-            scheduleItems[0].style.display = 'block'; // Show Day 1
-            scheduleItems[1].style.display = 'block'; // Show Day 2
-            // You can add more conditions for other options as needed
-        } else if (selectedCategory === '3') {
-            // Show items for option 3
-            scheduleItems[0].style.display = 'block'; // Show Day 1
-            scheduleItems[1].style.display = 'block'; // Show Day 2
-            scheduleItems[2].style.display = 'block'; // Show Day 2
-            // You can add more conditions for other options as needed
-        } else if (selectedCategory === '4') {
-            // Show items for option 4
-            scheduleItems[0].style.display = 'block'; // Show Day 1
-            scheduleItems[1].style.display = 'block'; // Show Day 2
-            scheduleItems[2].style.display = 'block'; // Show Day 2
-            scheduleItems[3].style.display = 'block'; // Show Day 2
-            // You can add more conditions for other options as needed
-        } else if (selectedCategory === '5') {
-            // Show items for option 5
-            scheduleItems[0].style.display = 'block'; // Show Day 1
-            scheduleItems[1].style.display = 'block'; // Show Day 2
-            scheduleItems[2].style.display = 'block'; // Show Day 2
-            scheduleItems[3].style.display = 'block'; // Show Day 2
-            scheduleItems[4].style.display = 'block'; // Show Day 2
-            // You can add more conditions for other options as needed
-        } else if (selectedCategory === '6') {
-            // Show items for option 6
-            scheduleItems[0].style.display = 'block'; // Show Day 1
-            scheduleItems[1].style.display = 'block'; // Show Day 2
-            scheduleItems[2].style.display = 'block'; // Show Day 2
-            scheduleItems[3].style.display = 'block'; // Show Day 2
-            scheduleItems[5].style.display = 'block'; // Show Day 2
-            scheduleItems[6].style.display = 'block'; // Show Day 2
-        }
-    });
-
-    // Initialize an object to store the schedule data
-const scheduleData = {
-    day1: {},
-    day2: {},
-    day3: {},
-    day4: {},
-    day5: {},
-    day6: {}
-};
-
-    // Add event listeners to date and time inputs for each day
-    document.querySelectorAll('.hak-dlt-input').forEach((input, index) => {
-        input.addEventListener('change', function(event) {
-            // Get the day number from the input's parent li index
-            const dayNumber = index + 1;
-            
-            // Get the type of input (date or time)
-            const inputType = input.getAttribute('type');
-            
-            // Store the value in the scheduleData object
-            scheduleData[`day${dayNumber}`][inputType] = event.target.value;
-            
-            console.log(scheduleData);
-        });
-    });
-
+ 
     }

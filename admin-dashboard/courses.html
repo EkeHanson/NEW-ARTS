@@ -39,7 +39,7 @@
 <section class="upload-Sec courses-Box">
         <div class="upload-Box">
             <div class="upload-Box-header">
-                <h3>Add course</h3>
+                <h3>Add course112</h3>
                 <span class="Close-Upload-Box"><i class="ti-close"></i></span>
             </div>
             <div class="upload-Box-body">
@@ -187,7 +187,7 @@
                     </div>
 
                     <div class="Submit-Div">
-                        <input type="submit" name="" value="Submit">
+                        <input id="submit-category" type="submit" name="" value="Submit">
                     </div>
                 </form>
             </div>
@@ -431,94 +431,13 @@
    <script src="js/aos.js"></script>
     <script src="js/loader.js"></script>
      <script src="js/main.js"></script>
+     <script src="../js/index.js"></script>
          <script src='js/chart.js'></script>
     <script src="js/chat-canvas.js"></script>
     <script>
+    <script>
 
-//COURSES
-        // Fetch data from the Category API endpoint // Fetch data from the Instructors API endpoint
-        fetch('https://new-arts-api.onrender.com/course/instructors/')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Get the select element
-                const selectElement = document.querySelector('#selectInstructor');
-
-                // Loop through the categories and create options
-                data.forEach(instructor => {
-                    const optionElement = document.createElement('option');
-                    optionElement.textContent = `${instructor.instructor_last_name} ${instructor.instructor_id}` ; // Use category name as option text
-                    optionElement.value = instructor.id; // Optionally, set the value of each option
-                    selectElement.appendChild(optionElement);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-                        // Fetch categories
-            fetch('https://new-arts-api.onrender.com/course/categories/')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const selectElement = document.querySelector('#selectCategory');
-                data.forEach(category => {
-                    const optionElement = document.createElement('option');
-                    optionElement.textContent = category.name;
-                    optionElement.value = category.id;
-                    selectElement.appendChild(optionElement);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching categories:', error);
-            });
-
-            // Handle form submission
-            document.getElementById('submit-course').addEventListener('click', function(event) {
-            event.preventDefault();
-
-            // Get form data
-            const category = document.querySelector('#selectCategory').value;
-            const instructor = document.querySelector('#selectInstructor').value;
-            const course_description = document.getElementById('course-description').value;
-            const course_title = document.getElementById('course-title').value;
-            const course_price = document.getElementById('course-price').value;
-            const course_duration = document.getElementById('course-duration').value;
-
-            const formData = new FormData();
-            formData.append('category', category);
-            formData.append('title', course_title);
-            formData.append('details', course_description);
-            formData.append('amount', course_price);
-            formData.append('duration', course_duration);
-            formData.append('instructor', instructor);
-
-            // Send POST request using fetch API
-            fetch('https://new-arts-api.onrender.com/course/', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => {
-                if (response.ok) {
-                    document.getElementById('submit-course').textContent = "Submit";
-                    window.location.href = "courses.html";
-                } else {
-                    throw new Error('Failed to create Course');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while creating the Course.');
-                document.getElementById('submit-course').textContent = "Submit";
-            });
-            });
+        
 
     // Add event listener to the select element
     document.querySelector('#selctionSchedule').addEventListener('change', function(event) {
@@ -648,7 +567,7 @@ fetch('https://new-arts-api.onrender.com/course/')
                   <div class="instruc-profl-grid">
                     <div class="profl-img">
                       <div class="profl-img-main">
-                        <img src="https://new-arts-api.onrender.com/${categoryImageURL}"" alt="${categoryData.name}">
+                        <img src="https://new-arts-api.onrender.com${categoryImageURL}"" alt="${categoryData.name}">
                         <span class="online"></span>
                       </div>
                     </div>
@@ -686,5 +605,95 @@ fetch('https://new-arts-api.onrender.com/course/')
 
     </script>
 
+    <script>
+        
+        
+    
+        // Fetch instructors
+        fetch('https://new-arts-api.onrender.com/course/instructors/')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const selectElement = document.querySelector('#selectInstructor');
+            data.forEach(instructor => {
+                const optionElement = document.createElement('option');
+                optionElement.textContent = `${instructor.instructor_last_name} ${instructor.instructor_id}`;
+                optionElement.value = instructor.id;
+                selectElement.appendChild(optionElement);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching instructors:', error);
+        });
+
+        // Fetch categories
+        fetch('https://new-arts-api.onrender.com/course/categories/')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const selectElement = document.querySelector('#selectCategory');
+            data.forEach(category => {
+                const optionElement = document.createElement('option');
+                optionElement.textContent = category.name;
+                optionElement.value = category.id;
+                selectElement.appendChild(optionElement);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching categories:', error);
+        });
+
+        // Handle form submission
+        document.querySelector('.upload-Box-body form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form data
+            const category = document.querySelector('#selectCategory').value;
+            const instructor = document.querySelector('#selectInstructor').value;
+            const course_description = document.getElementById('course-description').value;
+            const course_title = document.getElementById('course-title').value;
+            const course_price = document.getElementById('course-price').value;
+            const course_duration = document.getElementById('course-duration').value;
+
+            const formData = new FormData();
+            formData.append('category', category);
+            formData.append('title', course_title);
+            formData.append('details', course_description);
+            formData.append('amount', course_price);
+            formData.append('duration', course_duration);
+            formData.append('instructor', instructor);
+
+            // Send POST request using fetch API
+            fetch('https://new-arts-api.onrender.com/course/', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('submit-course').textContent = "Submit";
+                    window.location.href = "courses.html";
+                } else {
+                    alert("Sorry, could not create the course");
+                    throw new Error('Failed to create Course');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                window.location.href = "courses.html";
+                document.getElementById('submit-category').textContent = "Submit";
+            });
+        });
+
+    
+    </script>
+    
    </body>
    </html>
