@@ -37,6 +37,38 @@
 <body>
 
 
+ 
+    <section class="upload-Sec cartegory-Box">
+        <div class="upload-Box">
+            <div class="upload-Box-header">
+                <h3>Add course cartegory</h3>
+                <span class="Close-Upload-Box"><i class="ti-close"></i></span>
+            </div>
+            <div class="upload-Box-body">
+                <form>
+                    <div class="input-Div">
+                        <p>Title</p>
+                        <input id="category-title" type="text" name="" placeholder="Enter course title">
+                    </div>
+                    <div class="input-Div">
+                        <p>Course cartegory banner</p>
+                        <input id="category-image" type="file" name="">
+                    </div>
+                    <div class="input-Div">
+                        <p>Description (optional)</p>
+                        <textarea  id="category-description" placeholder="Enter course description"></textarea>
+                    </div>
+
+                    <div class="Submit-Div">
+                        <input id="submit-category" type="submit" name="" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
 
     <section class="site-content">
         <div class="nav-sec">
@@ -58,11 +90,11 @@
                          <ul>
                              <li>
                                 <a href="dashboard.html"><i class="icon-speedometer"></i> <span>Dashboard</a>
-                                </li>
+                            </li>
 
-                                <li class="active-sideIcon">
-                                    <a href="category.html"><i class="icon-pie-chart"></i> <span>Course categories</span></a>
-                                </li>
+                            <li class="active-sideIcon">
+                                <a href="category.html"><i class="icon-pie-chart"></i> <span>Course categories</span></a>
+                            </li>
 
                              <li>
                                 <a href="courses.html"><i class="icon-layers"></i> <span>Courses</span></a>
@@ -133,26 +165,11 @@
 
                     <div class="affiliate-Sec Box-Show">
                        <div class="hello-intro">
-                                          <div class="instruc-profl">
-                                               <div class="instruc-profl-grid">
-                                            <div class="profl-img">
-                                              <div class="profl-img-main">
-                                                <img src="img/staffs/1.jpg">
-                                              <span class="online"></span>
-                                            </div>
-                                              
-                                            </div>
-                                            <div class="profl-dlts">
-                                              <p style="font-size: 15px !important;">Ndubuisi Prince Godson</p>
-                                            </div>
-                                          </div>
-
-                              <h1>Instructor profile</h1>
-
+                              <h1>Course Categories</h1>
                                     <ul>
                                       <li>A.R.T.S</li>
                                       <li>Admin</li>
-                                      <li class="active-li">Profile</li>
+                                      <li class="active-li">Categories</li>
                                     </ul>
                                </div>
 
@@ -181,8 +198,8 @@
 
                         <div class="affiliate-Sec Box-Show">
                        <div class="top-das-1-header">
-                            <h3>Allocated Courses</h3>
-                            <p>20</p>
+                            <h3>Course Categories</h3>
+                            <button class="cartegory-Btn"><i class="fa fa-plus"></i> add course category</button>
                         </div>
 
                         <div class="Sec-table">
@@ -190,12 +207,9 @@
                                 <thead>
                                     <tr>
                                         <th>S/N</th>
-                                        <th>Category</th>
-                                        <th>Course title</th>
-                                        <th>Price</th>
-                                        <th>Duration</th>
-                                        <th>Lesson days</th>
-                                        <th>Enrolled users</th>
+                                        <th>Category name</th>
+                                        <th>Courses</th>
+                                        <th>Total enrolled useres</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -203,36 +217,35 @@
 
                                        <tr>
                                         <td>1</td>
-                                        <td>Health</td>
-                                        <td>Introcution to health and safety management</td>
-                                        <td> € 400</td>
-                                        <td>1hr 20mins 30sec</td>
-                                        <td>3 days</td>
+                                      
+                                         <td>
+                                            <div class="instruc-dlt-main">
+                                          <div class="instruc-profl">
+                                               <div class="instruc-profl-grid">
+                                            <div class="profl-img">
+                                              <div class="profl-img-main">
+                                                <img src="img/staffs/1.jpg">
+                                              <span class="online"></span>
+                                            </div>
+                                              
+                                            </div>
+                                            <div class="profl-dlts">
+                                              <p>Health</p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        </td>
+                                        <td> 0</td>
                                         <td>0</td>
                                         <td>
                                             <div class="action-btns">
-                                                <a href="course-progress.html" style="background:#F29D56 !important; color: #000 !important;"><i class="icon-user"></i> View progress</a>
+                                                <a href="javascript:void(0);" style="background:#6FD96F !important;" class="cartegory-Btn"><i class="icon-user"></i> Edit</a>
                                                 <button><i class="ti-close"></i>  Remove</button>
                                             </div>
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Health</td>
-                                        <td>Introcution to health and safety management</td>
-                                        <td> € 400</td>
-                                        <td>1hr 20mins 30sec</td>
-                                        <td>3 days</td>
-                                        <td>0</td>
-                                        <td>
-                                            <div class="action-btns">
-                                                <a href="course-progress.html" style="background:#F29D56 !important; color: #000 !important;"><i class="icon-user"></i> View progress</a>
-                                                <button><i class="ti-close"></i>  Remove</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
+                                   
                                     
                                 </tbody>
                             </table>
@@ -288,5 +301,47 @@
      <script src="js/main.js"></script>
          <script src='js/chart.js'></script>
     <script src="js/chat-canvas.js"></script>
+    <script>
+        document.getElementById('submit-category').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+    
+            // Get form data
+            alert('submit-category selected')
+          
+            let name = document.getElementById('category-title').value;
+            let details = document.getElementById('category-description').value;
+            let imageInput = document.getElementById('category-image');
+            let image = imageInput.files[0];
+    
+            // Create a FormData object
+            let formData = new FormData();
+            formData.append('name', name);
+            formData.append('details', details);
+            formData.append('image', image);
+    
+            // Send POST request using fetch API
+            document.getElementById('submit-category').textContent = "Submitting ..."
+            fetch('https://new-arts-api.onrender.com/course/categories/', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Category created successfully
+                    document.getElementById('submit-category').textContent = "Submitting"
+                    window.location.href = "category.html";
+                } else {
+                    // Error handling
+                    throw new Error('Failed to create category');
+                }
+            })
+            .catch(error => {
+                document.getElementById('submit-category').textContent = "Submitting"
+                console.error('Error:', error);
+                alert('An error occurred while creating the category.');
+            });
+        });
+
+    </script>
    </body>
    </html>

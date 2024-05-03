@@ -100,8 +100,10 @@
                          <ul>
                              <li>
                                 <a href="dashboard.html"><i class="icon-speedometer"></i> <span>Dashboard</a>
-                                </li>
-
+                            </li>
+                            <li class="active-sideIcon">
+                                <a href="category.html"><i class="icon-pie-chart"></i> <span>Course categories</span></a>
+                            </li>
                              <li>
                                 <a href="courses.html"><i class="icon-layers"></i> <span>Courses</span></a>
                             </li>
@@ -439,7 +441,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td>${instructor.courses_assigned !== null ? instructor.courses_assigned  : 0}</td>
+                        
                         <td>${instructor.courses_assigned !== null ? instructor.courses_assigned  : 0}</td>
                         <td>${instructor.number_of_students !== null ? instructor.number_of_students  : 0}</td>
                         <td>${instructor.courses_assigned !== null ? instructor.courses_assigned  : 0}</td>
@@ -458,6 +460,9 @@
             })
             .catch(error => console.error('Error fetching data:', error));
     </script>
+
+
+
     <script>
 
 

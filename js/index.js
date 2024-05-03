@@ -401,9 +401,7 @@ if( document.querySelector("#dashboard")){
 
 
 if (document.getElementById("#admin-dashboard")) {
-        // Add event listener to the form submission
-        alert("YES")
-        //COURSES
+      
         // Fetch data from the Category API endpoint // Fetch data from the Instructors API endpoint
         fetch('https://new-arts-api.onrender.com/course/instructors/')
             .then(response => {
@@ -419,7 +417,7 @@ if (document.getElementById("#admin-dashboard")) {
                 // Loop through the categories and create options
                 data.forEach(instructor => {
                     const optionElement = document.createElement('option');
-                    optionElement.textContent = `${instructor.instructor_last_name} ${instructor.instructor_id}` ; // Use category name as option text
+                    optionElement.textContent = `${instructor.instructor_first_name} ${instructor.instructor_last_name}` ; // Use category name as option text
                     optionElement.value = instructor.id; // Optionally, set the value of each option
                     selectElement.appendChild(optionElement);
                 });

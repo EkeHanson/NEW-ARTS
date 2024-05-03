@@ -296,7 +296,11 @@
                          <ul>
                              <li class="active-sideIcon">
                                 <a href="dashboard.html"><i class="icon-speedometer"></i> <span>Dashboard</a>
-                                </li>
+                            </li>
+
+                            <li class="active-sideIcon">
+                                <a href="category.html"><i class="icon-pie-chart"></i> <span>Course categories</span></a>
+                            </li>
 
                              <li>
                                 <a href="courses.html"><i class="icon-layers"></i> <span>Courses</span></a>
@@ -704,7 +708,7 @@
     <script>
 
 
-document.getElementById('submit-category').addEventListener('click', function(event) {
+        document.getElementById('submit-category').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent default form submission behavior
     
             // Get form data
@@ -804,7 +808,7 @@ document.getElementById('submit-category').addEventListener('click', function(ev
                 // Loop through the categories and create options
                 data.forEach(instructor => {
                     const optionElement = document.createElement('option');
-                    optionElement.textContent = `${instructor.instructor_last_name} ${instructor.instructor_id}` ; // Use category name as option text
+                    optionElement.textContent = `${instructor.instructor_first_name} ${instructor.instructor_last_name}` ; // Use category name as option text
                     optionElement.value = instructor.id; // Optionally, set the value of each option
                     selectElement.appendChild(optionElement);
                 });

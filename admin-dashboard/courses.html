@@ -221,6 +221,10 @@
                                 <a href="dashboard.html"><i class="icon-speedometer"></i> <span>Dashboard</a>
                                 </li>
 
+                                <li class="active-sideIcon">
+                                  <a href="category.html"><i class="icon-pie-chart"></i> <span>Course categories</span></a>
+                              </li>
+
                              <li class="active-sideIcon">
                                 <a href="courses.html"><i class="icon-layers"></i> <span>Courses</span></a>
                             </li>
@@ -400,26 +404,6 @@
                </div>
            </footer>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         </div>
         </div><!--main-section-->
@@ -628,7 +612,7 @@ const scheduleData = {
             const selectElement = document.querySelector('#selectInstructor');
             data.forEach(instructor => {
                 const optionElement = document.createElement('option');
-                optionElement.textContent = `${instructor.instructor_last_name} ${instructor.instructor_id}`;
+                optionElement.textContent = `${instructor.instructor_first_name} ${instructor.instructor_last_name}`;
                 optionElement.value = instructor.id;
                 selectElement.appendChild(optionElement);
             });
