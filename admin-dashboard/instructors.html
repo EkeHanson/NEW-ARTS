@@ -483,7 +483,7 @@ document.getElementById('submit-instructor').addEventListener('click', function(
     
             // Send POST request using fetch API
             document.getElementById('submit-instructor').textContent = "Submitting ..."
-            fetch('http://127.0.0.1:9090/course/instructors/', {
+            fetch('https://new-arts-api.onrender.com/course/instructors/', {
                 method: 'POST',
                 body: formData,
             })
