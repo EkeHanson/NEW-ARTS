@@ -32,55 +32,55 @@ let coursesPage = "https://new-arts-website.vercel.app/courses.html"
 // }
 
 if (document.querySelector("#signUpBtn")) {
-    document.getElementById('signUpBtn').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+    // document.getElementById('signUpBtn').addEventListener('click', function(event) {
+    //     event.preventDefault(); // Prevent the default form submission
 
         
-        function getParameterByName(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
-        let email = getParameterByName('email');
+    //     function getParameterByName(name) {
+    //         const urlParams = new URLSearchParams(window.location.search);
+    //         return urlParams.get(name);
+    //     }
+    //     let email = getParameterByName('email');
 
-        // Change button text to "Signing up..."
-        document.getElementById('signUpBtn').textContent = 'Signing up...';
+    //     // Change button text to "Signing up..."
+    //     document.getElementById('signUpBtn').textContent = 'Signing up...';
 
-        // Get form data
-        let formData = {
-            first_name: document.getElementById('firstName').value,
-            last_name: document.getElementById("lastName").value,
-            password: document.getElementById("password").value,
-            email: email
-            // Add other form fields similarly
-        };
+    //     // Get form data
+    //     let formData = {
+    //         first_name: document.getElementById('firstName').value,
+    //         last_name: document.getElementById("lastName").value,
+    //         password: document.getElementById("password").value,
+    //         email: email
+    //         // Add other form fields similarly
+    //     };
 
-        // Send POST request using fetch API
-        fetch('https://new-arts-api.onrender.com/user/create/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-        .then(response => {
-            if (response.ok) {
-                // Redirect to login page on successful signup
-                window.location.href = loginPage;
-                return response.json();
-            }
-            throw new Error('Network response was not ok.');
-        })
-        .then(data => {
-            // Handle response data
-            console.log(data);
-        })
-        .catch(error => {
-            // Handle signup errors
-            console.error('There was a problem with the fetch operation:', error);
-            // Change button text back to "Sign up HERE"
-            document.getElementById('signUpBtn').textContent = 'Sign up HERE';
-        });
-    });
+    //     // Send POST request using fetch API
+    //     fetch('https://new-arts-api.onrender.com/user/create/', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(formData),
+    //     })
+    //     .then(response => {
+    //         if (response.ok) {
+    //             // Redirect to login page on successful signup
+    //             window.location.href = loginPage;
+    //             return response.json();
+    //         }
+    //         throw new Error('Network response was not ok.');
+    //     })
+    //     .then(data => {
+    //         // Handle response data
+    //         console.log(data);
+    //     })
+    //     .catch(error => {
+    //         // Handle signup errors
+    //         console.error('There was a problem with the fetch operation:', error);
+    //         // Change button text back to "Sign up HERE"
+    //         document.getElementById('signUpBtn').textContent = 'Sign up HERE';
+    //     });
+    // });
 }
 
 
@@ -489,3 +489,5 @@ if (document.getElementById("#admin-dashboard")) {
             });
  
     }
+
+ 
