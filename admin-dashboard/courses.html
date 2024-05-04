@@ -56,7 +56,10 @@
                         <p>Course title</p>
                         <input id="course-title" type="text" name="" placeholder="Enter course title">
                     </div>
-
+                    <div class="input-Div">
+                      <p>Course Code</p>
+                      <input id="course-code" type="text" name="" placeholder="Enter course code">
+                    </div>
                      <div class="input-Div">
                         <p>Course description</p>
                         <textarea  id="course-description" placeholder="Enter course description"></textarea>
@@ -77,7 +80,7 @@
                 </div>
                       <div class="input-Div">
                         <p>Course duration</p>
-                        <input id="course-duration" type="text" name="" placeholder="Enter course duration">
+                        <input id="course-duration" type="text" name="" placeholder="Enter course duration in hours and minutes ">
                     </div>
 
 
@@ -85,12 +88,12 @@
                         <p>Lesson days</p>
                         <select id="selctionSchedule">
                             <option>Select lesson days</option>
-                            <option>1 day</option>
-                            <option>2 day</option>
-                            <option>3 day</option>
-                            <option>4 day</option>
-                            <option>5 day</option>
-                            <option>6 day</option>
+                            <option value="1">1 day</option>
+                            <option value="2">2 day</option>
+                            <option value="3">3 day</option>
+                            <option value="4">4 day</option>
+                            <option value="5">5 day</option>
+                            <option value="6">6 day</option>
                         </select>
                     </div>
 
@@ -338,6 +341,7 @@
                                         <th>S/N</th>
                                         <th>Category</th>
                                         <th>Course title</th>
+                                        <th>Course code</th>
                                         <th>Instructor</th>
                                         <th>Price</th>
                                         <th>Duration</th>
@@ -504,10 +508,10 @@ const scheduleData = {
 
     <script>
 
-            // Send a GET request to the endpoint
+      // Send a GET request to the endpoint
 
-            // Fetch category information// Fetch category information and update the image
-            fetch('https://new-arts-api.onrender.com/course/')
+      // Fetch category information// Fetch category information and update the image
+      fetch('https://new-arts-api.onrender.com/course/')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -533,7 +537,7 @@ const scheduleData = {
               const categoryImageURL = categoryData.image;
 
               // Fetch instructor information
-              fetch(`https://new-arts-api.onrender.com/course/instructors/${course.instructor}/`)
+              fetch(`https://new-arts-api.onrender.com/course/instructors/${course.instructor_id}/`)
                 .then(response => {
                   if (!response.ok) {
                     throw new Error('Failed to fetch instructor information');
@@ -549,13 +553,14 @@ const scheduleData = {
                     <td>${course.id}</td>
                     <td>${categoryData.name}</td>
                     <td>${course.title}</td>
+                    <td>${course.course_code}</td>
                     <td>
                       <div class="instruc-dlt-main">
                         <div class="instruc-profl">
                           <div class="instruc-profl-grid">
                             <div class="profl-img">
                               <div class="profl-img-main">
-                                <img src="https://new-arts-api.onrender.com${categoryImageURL}" alt="${categoryData.name}">
+                                <img src=https://new-arts-api.onrender.com${categoryImageURL}" alt="${categoryData.name}">
                                 <span class="online"></span>
                               </div>
                             </div>
@@ -567,8 +572,8 @@ const scheduleData = {
                       </div>
                     </td>
                     <td>${course.amount}</td>
-                    <td>${course.duration} hours</td>
-                    <td>${course.duration} days</td>
+                    <td>${course.duration}</td>
+                    <td>${course.days_per_week} Days</td>
                     <td>${course.number_of_students !== null ? course.number_of_students : 0}</td>
                     <td>
                       <div class="action-btns">
@@ -648,19 +653,25 @@ const scheduleData = {
 
             // Get form data
             const category = document.querySelector('#selectCategory').value;
-            const instructor = document.querySelector('#selectInstructor').value;
+            const instructor_id = document.querySelector('#selectInstructor').value;
             const course_description = document.getElementById('course-description').value;
             const course_title = document.getElementById('course-title').value;
+            const course_code = document.getElementById('course-code').value;
             const course_price = document.getElementById('course-price').value;
-            const course_duration = document.getElementById('course-duration').value;
+            const duration = document.getElementById('course-duration').value;
+
+            // Get the selected days per week value
+            const daysPerWeek = document.getElementById('selctionSchedule').value;
 
             const formData = new FormData();
             formData.append('category', category);
             formData.append('title', course_title);
+            formData.append('course_code', course_code);
             formData.append('details', course_description);
             formData.append('amount', course_price);
-            formData.append('duration', course_duration);
-            formData.append('instructor', instructor);
+            formData.append('duration', duration);
+            formData.append('instructor_id', instructor_id);
+            formData.append('days_per_week', daysPerWeek);
 
             // Send POST request using fetch API
             fetch('https://new-arts-api.onrender.com/course/', {

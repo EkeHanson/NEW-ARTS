@@ -203,19 +203,19 @@
                         </div>
 
                         <div class="Sec-table">
-                            <table>
+                            <table id="category-table">
                                 <thead>
                                     <tr>
                                         <th>S/N</th>
                                         <th>Category name</th>
                                         <th>Courses</th>
-                                        <th>Total enrolled useres</th>
+                                        <th>Total enrolled users</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="category-table-body">
 
-                                       <tr>
+                                     <!--   <tr>
                                         <td>1</td>
                                       
                                          <td>
@@ -243,7 +243,7 @@
                                                 <button><i class="ti-close"></i>  Remove</button>
                                             </div>
                                         </td>
-                                    </tr>
+                                    </tr> -->
 
                                    
                                     
@@ -301,6 +301,8 @@
      <script src="js/main.js"></script>
          <script src='js/chart.js'></script>
     <script src="js/chat-canvas.js"></script>
+
+
     <script>
         document.getElementById('submit-category').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent default form submission behavior
@@ -343,5 +345,85 @@
         });
 
     </script>
+    <script>// Function to send a GET request to the endpoint
+        function fetchData() {
+          fetch('https://new-arts-api.onrender.com/course/categories/')
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.json();
+            })
+            .then(data => {
+              // Call a function to populate the table with the response data
+              populateTable(data);
+            })
+            .catch(error => {
+              console.error('There was a problem with the fetch operation:', error);
+            });
+        }
+        
+        // Function to populate the table with the response data
+        function populateTable(responseData) {
+          // Get the table body element
+          var tbody = document.getElementById('category-table-body');
+        
+          // Clear existing table rows
+          tbody.innerHTML = '';
+        
+          // Iterate over the response data and generate table rows
+          responseData.forEach(function(category, index) {
+            // Calculate total number of students
+            let totalStudents = 0;
+            category.courses.forEach(course => {
+              if (course.number_of_students !== null) {
+                totalStudents += course.number_of_students;
+              }
+            });
+        
+            // Create a new table row
+            var row = document.createElement('tr');
+        
+            // Add data to the row
+            row.innerHTML = `
+              <td>${index + 1}</td>
+              <td>
+                <div class="instruc-dlt-main">
+                  <div class="instruc-profl">
+                    <div class="instruc-profl-grid">
+                      <div class="profl-img">
+                        <div class="profl-img-main">
+                          <img src="https://new-arts-api.onrender.com${category.image}" alt="${category.name}">
+                          <span class="online"></span>
+                        </div>
+                      </div>
+                      <div class="profl-dlts">
+                        <p>${category.name}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>${category.courses.length}</td>
+              <td>${totalStudents}</td>
+              <td>
+                <div class="action-btns">
+                  <a href="javascript:void(0);" style="background:#6FD96F !important;" class="cartegory-Btn"><i class="icon-user"></i> Edit</a>
+                  <button><i class="ti-close"></i> Remove</button>
+                </div>
+              </td>
+            `;
+        
+            // Append the row to the table body
+            tbody.appendChild(row);
+          });
+        }
+        
+        // Fetch data when the page loads
+        fetchData();
+        
+    </script>
+
+
    </body>
    </html>

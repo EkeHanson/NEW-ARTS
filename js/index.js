@@ -84,114 +84,115 @@ if (document.querySelector("#signUpBtn")) {
 }
 
 
-if (document.querySelector("#logInForm")) {
-    document.getElementById('signInBtn').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+// if (document.querySelector("#logInForm")) {
+//     alert("LOGIN FROM INDEX")
+//     document.getElementById('signInBtn').addEventListener('click', function(event) {
+//         event.preventDefault(); // Prevent the default form submission
         
-        // Change button text to "Signing in..."
-        document.getElementById('signInBtn').textContent = 'Signing in...';
+//         // Change button text to "Signing in..."
+//         document.getElementById('signInBtn').textContent = 'Signing in...';
 
-        // Get form data
-        let formData = {
-            password: document.getElementById("logPass").value,
-            email: document.getElementById("logEmail").value
-        };
+//         // Get form data
+//         let formData = {
+//             password: document.getElementById("logPass").value,
+//             email: document.getElementById("logEmail").value
+//         };
 
-        // Send POST request using fetch API
-        fetch('https://new-arts-api.onrender.com/user/login/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-        .then(response => {
-            if (response.ok) {
-                // Save response details to local storage
-                return response.json();
-            }
-            throw new Error('Network response was not ok.');
-        })
-        .then(data => {
-            // Handle successful login
-            localStorage.setItem('accessToken', data.access_token);
-            localStorage.setItem('userId', data.user_id);
-            localStorage.setItem('userFirstName', data.user_first_name);
-            localStorage.setItem('userLastName', data.user_last_name);
-            localStorage.setItem('userEmail', data.user_email);
-            // Redirect to courses page
-            window.location.href = coursesPage;
-        })
-        .catch(error => {
-            // Handle login errors
-            alert("Incorrect email or password");
-            console.error('There was a problem with the fetch operation:', error);
-            // Change button text back to "Sign in"
-            document.getElementById('signInBtn').textContent = 'Sign in';
-        });
-    });
-}
+//         // Send POST request using fetch API
+//         fetch('http://127.0.0.1:9090/user/login/', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify(formData),
+//         })
+//         .then(response => {
+//             if (response.ok) {
+//                 // Save response details to local storage
+//                 return response.json();
+//             }
+//             throw new Error('Network response was not ok.');
+//         })
+//         .then(data => {
+//             // Handle successful login
+//             localStorage.setItem('accessToken', data.access_token);
+//             localStorage.setItem('userId', data.user_id);
+//             localStorage.setItem('userFirstName', data.user_first_name);
+//             localStorage.setItem('userLastName', data.user_last_name);
+//             localStorage.setItem('userEmail', data.user_email);
+//             // Redirect to courses page
+//             window.location.href = coursesPage;
+//         })
+//         .catch(error => {
+//             // Handle login errors
+//             alert("Incorrect email or password");
+//             console.error('There was a problem with the fetch operation:', error);
+//             // Change button text back to "Sign in"
+//             document.getElementById('signInBtn').textContent = 'Sign in';
+//         });
+//     });
+// }
 
 
-if (document.querySelector("#joinForFreeBtn")) {
-    console.log("Join for free Button Found");
+// if (document.querySelector("#joinForFreeBtn")) {
+//     console.log("Join for free Button Found");
 
-    function checkLoginStatus() {
-        let accessToken = localStorage.getItem('accessToken');
-        let loginLink = document.getElementById('logginBtn');
-        let joinForFreeBtn = document.getElementById('joinForFreeBtn');
+//     function checkLoginStatus() {
+//         let accessToken = localStorage.getItem('accessToken');
+//         let loginLink = document.getElementById('logginBtn');
+//         let joinForFreeBtn = document.getElementById('joinForFreeBtn');
 
-        if (accessToken) {
-            joinForFreeBtn.textContent = 'Dashboard';
-            loginLink.textContent = 'Logout';
+//         if (accessToken) {
+//             joinForFreeBtn.textContent = 'Dashboard';
+//             loginLink.textContent = 'Logout';
 
-            loginLink.addEventListener('click', function() {
-                localStorage.removeItem('accessToken');
-                localStorage.removeItem('userId');
-                localStorage.removeItem('userFirstName');
-                localStorage.removeItem('userLastName');
+//             loginLink.addEventListener('click', function() {
+//                 localStorage.removeItem('accessToken');
+//                 localStorage.removeItem('userId');
+//                 localStorage.removeItem('userFirstName');
+//                 localStorage.removeItem('userLastName');
              
-                window.location.href = 'index.html';
-            });
-            joinForFreeBtn.addEventListener('click', function() {
-                window.location.href = 'user-dashboard/dashboard.html'; // Corrected URL format
-            });
-        } else {
-            joinForFreeBtn.addEventListener('click', function() {
-                window.location.href = 'signup.html';});
-        }
-    }
+//                 window.location.href = 'index.html';
+//             });
+//             joinForFreeBtn.addEventListener('click', function() {
+//                 window.location.href = 'user-dashboard/dashboard.html'; // Corrected URL format
+//             });
+//         } else {
+//             joinForFreeBtn.addEventListener('click', function() {
+//                 window.location.href = 'signup.html';});
+//         }
+//     }
 
-    checkLoginStatus();
-}
+//     checkLoginStatus();
+// }
 
-if( document.querySelector("#dashboard")){
-    let userFirstName = localStorage.getItem('userFirstName');
-    let userlastName = localStorage.getItem('userLastName');
+// if( document.querySelector("#dashboard")){
+//     let userFirstName = localStorage.getItem('userFirstName');
+//     let userlastName = localStorage.getItem('userLastName');
 
     
 
-    let userName = document.getElementById("userName");
-    userName.innerHTML =  userFirstName !== null ? `${userFirstName}  ${userlastName}` : "Guest";
+//     let userName = document.getElementById("userName");
+//     userName.innerHTML =  userFirstName !== null ? `${userFirstName}  ${userlastName}` : "Guest";
 
-    let user = document.getElementById("user");
-    user.textContent = userFirstName !== null ?  userFirstName : "Guest";
+//     let user = document.getElementById("user");
+//     user.textContent = userFirstName !== null ?  userFirstName : "Guest";
 
-    let welcomeParagraph = document.getElementById("welcome-guest");
-    welcomeParagraph.innerHTML =  userFirstName !== null ? `${userFirstName} ${userlastName}` : "Guest";
+//     let welcomeParagraph = document.getElementById("welcome-guest");
+//     welcomeParagraph.innerHTML =  userFirstName !== null ? `${userFirstName} ${userlastName}` : "Guest";
     
 
-    document.getElementById("usernameId").textContent = userFirstName !== null ? `${userFirstName}  ${userlastName}` : "Guest"
+//     document.getElementById("usernameId").textContent = userFirstName !== null ? `${userFirstName}  ${userlastName}` : "Guest"
 
 
-     document.getElementById('logOutBtn').addEventListener('click', function() {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('userId');
-        localStorage.removeItem('userFirstName');
-        localStorage.removeItem('userLastName');
-        window.location.href = '../index.html';
-    });
- }
+//      document.getElementById('logOutBtn').addEventListener('click', function() {
+//         localStorage.removeItem('accessToken');
+//         localStorage.removeItem('userId');
+//         localStorage.removeItem('userFirstName');
+//         localStorage.removeItem('userLastName');
+//         window.location.href = '../index.html';
+//     });
+//  }
 
  if(document.querySelector("#assessmentPage")){
     let userFirstName = localStorage.getItem('userFirstName');
@@ -403,7 +404,7 @@ if( document.querySelector("#dashboard")){
 if (document.getElementById("#admin-dashboard")) {
       
         // Fetch data from the Category API endpoint // Fetch data from the Instructors API endpoint
-        fetch('https://new-arts-api.onrender.com/course/instructors/')
+        fetch('http://127.0.0.1:9090/course/instructors/')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -426,7 +427,7 @@ if (document.getElementById("#admin-dashboard")) {
                 console.error('Error fetching data:', error);
             });
                         // Fetch categories
-            fetch('https://new-arts-api.onrender.com/course/categories/')
+            fetch('http://127.0.0.1:9090/course/categories/')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -467,7 +468,7 @@ if (document.getElementById("#admin-dashboard")) {
             formData.append('instructor', instructor);
 
             // Send POST request using fetch API
-            fetch('https://new-arts-api.onrender.com/course/', {
+            fetch('http://127.0.0.1:9090/course/', {
                 method: 'POST',
                 body: formData,
             })

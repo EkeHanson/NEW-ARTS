@@ -80,9 +80,9 @@
         <ul class="right-navUl">
           <li><a href="javascript:voi(0);" class="search-toggler" onclick="CloseAllNavSelt();"><img src="svg/search-icon.svg"> Search</a></li>
 
-          <li  id="logginBtn"><a href="login.html" onclick="CloseAllNavSelt();"><img src="svg/login-icon.svg"> Login</a></li>
+          <li  ><a href="login.html" id="logginBtn" onclick="CloseAllNavSelt();"><img src="svg/login-icon.svg"> Login</a></li>
 
-          <li><a class="site-btn btn-bg2" id="joinForFreeBtn" onclick="CloseAllNavSelt();">Join for Free</a></li>
+          <li><a class="site-btn btn-bg2" href="signup.html" id="joinForFreeBtn" onclick="CloseAllNavSelt();">Join for Free</a></li>
         </ul>
       </div>
       <ul class="mobile-Icon">
@@ -647,6 +647,40 @@
 <!-- main site .js -->
   <script src="js/main.js"></script>
   <script src="js/index.js"></script>
+  <script>
+    if (document.querySelector("#joinForFreeBtn")) {    
+        function checkLoginStatus() {
+            let accessToken = localStorage.getItem('accessToken');
+            let loginLink = document.getElementById('logginBtn');
+            let joinForFreeBtn = document.getElementById('joinForFreeBtn');
+            
+    
+            if (accessToken) {
+                joinForFreeBtn.textContent = 'Dashboard';
+                loginLink.textContent = 'Logout';
+    
+                joinForFreeBtn.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default behavior of anchor tag
+                    window.location.href = 'user-dashboard/dashboard.html'; // Redirect to dashboard
+                });       
+                  
+                loginLink.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default behavior of anchor tag
+                    loginLink.addEventListener('click', function() {
+                        localStorage.removeItem('accessToken');
+                        localStorage.removeItem('userId');
+                        localStorage.removeItem('userFirstName');
+                        localStorage.removeItem('userLastName');
+                 
+                        window.location.href = 'signup.html';
+                    });
+                }); // Close joinForFreeBtn event listener
+            }
+        } 
+    
+        checkLoginStatus();
+    }
+    </script>
  
 
 

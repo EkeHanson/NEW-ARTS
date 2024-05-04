@@ -285,7 +285,7 @@ fetch('https://new-arts-api.onrender.com/user/create/')
             <td><a href="mailto:${user.email}" class="email-Ahrf">${user.email}</a></td>
             <td>${user.first_name}</td>
             <td>${user.last_name}</td>
-            <td>0</td>
+            <td>${user.enrolled_courses.length}</td>
             <td>${new Date(user.date_joined).toDateString()}</td>
         `;
         tbody.appendChild(row);

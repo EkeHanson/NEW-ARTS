@@ -132,7 +132,10 @@
                         <p>Course title</p>
                         <input id="course-title" type="text" name="" placeholder="Enter course title">
                     </div>
-
+                    <div class="input-Div">
+                        <p>Course Code</p>
+                        <input id="course-code" type="text" name="" placeholder="Enter course code">
+                      </div>
                      <div class="input-Div">
                         <p>Course description</p>
                         <textarea id="course-description" placeholder="Enter course description"></textarea>
@@ -384,7 +387,7 @@
                             </div>
                             <div class="top-das-1-card">
                                 <i class="fa fa-check-square"></i>
-                                <h3>0</h3>
+                                <h3 id="number_of_enrolled_users">0</h3>
                                 <p>Enrolled courses</p>
                             </div>
                             <div class="top-das-1-card">
@@ -752,7 +755,6 @@
         // Add event listener to the form submission
         document.getElementById('submit-instructor').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent default form submission behavior
-    
             // Get form data
             let instructor_email = document.getElementById('instructor-email').value;
             let instructor_first_name = document.getElementById('instructor-first-name').value;
@@ -760,7 +762,10 @@
             let imageInput = document.getElementById('instructor-image');
             let image = imageInput.files[0];
             
-
+            console.log(instructor_email)
+            console.log(instructor_first_name)
+            console.log(instructor_last_name)
+            console.log(image)
             // Create a FormData object
             let formData = new FormData();
             formData.append('email', instructor_email);
@@ -843,19 +848,25 @@
 
             // Get form data
             const category = document.querySelector('#selectCategory').value;
-            const instructor = document.querySelector('#selectInstructor').value;
+            const instructor_id = document.querySelector('#selectInstructor').value;
             const course_description = document.getElementById('course-description').value;
             const course_title = document.getElementById('course-title').value;
+            const course_code = document.getElementById('course-code').value;
             const course_price = document.getElementById('course-price').value;
-            const course_duration = document.getElementById('course-duration').value;
+            const duration = document.getElementById('course-duration').value;
+            
+            // Get the selected days per week value
+            const daysPerWeek = document.getElementById('selctionSchedule').value;
 
             const formData = new FormData();
             formData.append('category', category);
             formData.append('title', course_title);
+            formData.append('course_code', course_code);
             formData.append('details', course_description);
             formData.append('amount', course_price);
-            formData.append('duration', course_duration);
-            formData.append('instructor', instructor);
+            formData.append('duration', duration);
+            formData.append('instructor_id', instructor_id);
+            formData.append('days_per_week', daysPerWeek);
 
             // Send POST request using fetch API
             fetch('https://new-arts-api.onrender.com/course/', {
@@ -960,9 +971,37 @@ const scheduleData = {
 
     </script>
 
-//OBJECTS coupon
+//OBJECTS: Number of enrolled courses and number of users
 <script>
-    // Fetch data from the endpoint
+
+    // Fetch data from the users endpoint
+
+    
+    // Fetch data from the enrolled users endpoint
+    fetch('https://new-arts-api.onrender.com/course/enrolled/')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const numberOfObjects = data.length;
+        console.log('Number of objects returned:', numberOfObjects);
+
+        // Update the HTML content with the number of objects
+        const objectCountElement = document.querySelector('#number_of_enrolled_users');
+        if (objectCountElement) {
+            objectCountElement.textContent = numberOfObjects;
+        } else {
+            console.error('Element not found to display object count');
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+  // Fetch data from the  users endpoint
     fetch('https://new-arts-api.onrender.com/user/create/')
     .then(response => {
         if (!response.ok) {

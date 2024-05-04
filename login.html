@@ -24,7 +24,7 @@
 </head>
 <body>
 
-  <nav class="navBar">
+  <nav class="navBar" id="logInForm">
     <div class="large-container">
       <a href="index.html" class="logo-brand">
         <img src="img/site-logo.png">
@@ -59,7 +59,7 @@
             <span>Or</span>
           </div>
 
-          <form class="reg-form" id ="logInForm">
+          <form class="reg-form" >
             <div class="form-input">
               <input type="text" name="" placeholder="Email Address" id="logEmail">
             </div>
@@ -111,5 +111,60 @@
 <!-- main site .js -->
   <script src="js/main.js"></script>
   <script src="js/index.js"></script>
+  <script>
+
+if (document.querySelector("#logInForm")) {
+                        localStorage.removeItem('accessToken');
+                        localStorage.removeItem('userId');
+                        localStorage.removeItem('userFirstName');
+                        localStorage.removeItem('userLastName');
+    document.getElementById('signInBtn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        
+        // Change button text to "Signing in..."
+        document.getElementById('signInBtn').textContent = 'Signing in...';
+
+        // Get form data
+        let formData = {
+            password: document.getElementById("logPass").value,
+            email: document.getElementById("logEmail").value
+        };
+
+        // Send POST request using fetch API
+        fetch('https://new-arts-api.onrender.com/user/login/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => {
+            if (response.ok) {
+                // Save response details to local storage
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            // Handle successful login
+            localStorage.setItem('accessToken', data.access_token);
+            localStorage.setItem('userId', data.user_id);
+            localStorage.setItem('userFirstName', data.user_first_name);
+            localStorage.setItem('userLastName', data.user_last_name);
+            localStorage.setItem('userEmail', data.user_email);
+            // Redirect to courses page
+            window.location.href = 'courses.html';
+        })
+        .catch(error => {
+            // Handle login errors
+            alert("Incorrect email or password");
+            console.error('There was a problem with the fetch operation:', error);
+            // Change button text back to "Sign in"
+            document.getElementById('signInBtn').textContent = 'Sign in';
+        });
+    });
+}
+
+  </script>
 </body>
 </html>

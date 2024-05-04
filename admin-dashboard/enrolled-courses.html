@@ -175,9 +175,10 @@
                                         <th>S/N</th>
                                         <th>Category</th>
                                         <th>Course title</th>
+                                        <th>Course Code</th>
                                         <th>Instructor</th>
                                         <th>Price</th>
-                                        <th>Duration</th>
+                                        <!-- <th>Duration</th> -->
                                         <th>Lesson days</th>
                                         <th>Enrolled users</th>
                                         <th>Action</th>
@@ -185,7 +186,7 @@
                                 </thead>
                                 <tbody>
 
-                                       <tr>
+                                       <!-- <tr>
                                         <td>1</td>
                                         <td>Health</td>
                                         <td>Introcution to health and safety management</td>
@@ -247,7 +248,7 @@
                                                 <a href="enrolled-users.html" class="courses-Btn"><i class="icon-user"></i> Enrolled users</a>
                                             </div>
                                         </td>
-                                    </tr>
+                                    </tr> -->
 
                                     
                                 </tbody>
@@ -304,5 +305,94 @@
      <script src="js/main.js"></script>
          <script src='js/chart.js'></script>
     <script src="js/chat-canvas.js"></script>
+
+    <script>
+      // Send a GET request to the endpoint and populate the table
+      fetch('https://new-arts-api.onrender.com/course/enrolled/')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Select the table body element where you want to append the data
+          const tableBody = document.querySelector('tbody');
+    
+          // Iterate over the data and create table rows
+          data.forEach(course => {
+            // Fetch category information
+            fetch(`https://new-arts-api.onrender.com/course/categories/${course.category}/`)
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Failed to fetch category information');
+                }
+                return response.json();
+              })
+              .then(categoryData => {
+                // Fetch instructor information
+                fetch(`https://new-arts-api.onrender.com/course/instructors/${course.instructor_id}/`)
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error('Failed to fetch instructor information');
+                    }
+                    return response.json();
+                  })
+                  .then(instructorData => {
+                    // Create a new table row
+                    const newRow = document.createElement('tr');
+    
+                    // Fill the table row with course data and instructor's first name
+                    newRow.innerHTML = `
+                      <td>${course.id}</td>
+                      <td>${categoryData.name}</td>
+                      <td>${course.title}</td>
+                      <td>${course.course_code}</td>
+                      <td>
+                        <div class="instruc-dlt-main">
+                          <div class="instruc-profl">
+                            <div class="instruc-profl-grid">
+                              <div class="profl-img">
+                                <div class="profl-img-main">
+                                  <img src="https://new-arts-api.onrender.com${categoryData.image}" alt="${categoryData.name}">
+                                  <span class="online"></span>
+                                </div>
+                              </div>
+                              <div class="profl-dlts">
+                                <p>${instructorData.instructor_first_name}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>${course.amount}</td>
+                     
+                      <td>${course.days_per_week} Days</td>
+                      <td>${course.number_of_students !== null ? course.number_of_students : 0}</td>
+                      <td>
+                        <div class="action-btns">
+                          <a  href="enrolled-users.html?course_id=${course.id}&category_name=${categoryData.name}&course_title=${course.title}" class="courses-Btn"><i class="icon-user"></i> Enrolled users</a>
+                        </div>
+                      </td>
+                    `;
+    
+                    // Append the new row to the table body
+                    tableBody.appendChild(newRow);
+                  })
+                  .catch(error => {
+                    console.error('Error fetching instructor information:', error);
+                  });
+              })
+              .catch(error => {
+                console.error('Error fetching category information:', error);
+              });
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    
+    </script>
+    
    </body>
    </html>

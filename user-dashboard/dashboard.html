@@ -104,7 +104,7 @@
             </a>
           </li>
         <li>
-            <a href="../index.html" id="logOutBtn" >
+            <a href="../login.html" id="logOutBtn" >
               <img src="svg/logout.svg">
               Logout
             </a>
@@ -534,5 +534,34 @@
     });
   } );
   </script>
+
+<script>
+  if (document.querySelector("#dashboard")) {
+      alert("You are in the user Dashboard")
+      let userFirstName = localStorage.getItem('userFirstName');
+      let userLastName = localStorage.getItem('userLastName');
+  
+      let userName = document.getElementById("userName");
+      userName.innerHTML = userFirstName !== null ? `${userFirstName}  ${userLastName}` : "Guest";
+  
+      let user = document.getElementById("user");
+      user.textContent = userFirstName !== null ? userFirstName : "Guest";
+  
+      let welcomeParagraph = document.getElementById("welcome-guest");
+      welcomeParagraph.innerHTML = userFirstName !== null ? `${userFirstName} ${userLastName}` : "Guest";
+  
+      document.getElementById("usernameId").textContent = userFirstName !== null ? `${userFirstName}  ${userLastName}` : "Guest";
+  
+      document.getElementById('logOutBtn').addEventListener('click', function(event) {
+          event.preventDefault(); // Prevent default anchor tag behavior
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('userId');
+          localStorage.removeItem('userFirstName');
+          localStorage.removeItem('userLastName');
+          window.location.href = '../login.html'; // Redirect to login page
+      });
+  }
+  </script>
+  
 </body>
 </html>

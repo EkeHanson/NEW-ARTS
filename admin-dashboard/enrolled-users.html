@@ -132,7 +132,7 @@
 
                     <div class="affiliate-Sec Box-Show">
                        <div class="hello-intro">
-                              <h1>Introduction to health and safety management</h1>
+                              <h1 id="course_title">Introduction to health and safety management</h1>
                                     <ul>
                                       <li>A.R.T.S</li>
                                       <li>Admin</li>
@@ -170,7 +170,7 @@
                         </div>
 
                         <div class="Sec-table">
-                            <table>
+                            <table id="userTable">
                                 <thead>
                                     <tr>
                                         <th>S/N</th>
@@ -182,32 +182,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>1</td>
                                         <td><a href="mailto:princegodson24@gmail.com" class="email-Ahrf">princegodson24@gmail.com</a></td>
                                         <td>Prince</td>
                                         <td>Godson</td>
                                         <td>Health</td>
                                         <td>Mon, 16th May 2023</td>
-                                    </tr>
+                                    </tr> -->
 
-                                     <tr>
+                                     <!-- <tr>
                                         <td>2</td>
                                         <td><a href="mailto:princegodson24@gmail.com" class="email-Ahrf">princegodson24@gmail.com</a></td>
                                         <td>Prince</td>
                                         <td>Godson</td>
                                         <td>Health</td>
                                         <td>Mon, 16th May 2023</td>
-                                    </tr>
+                                    </tr> -->
 
-                                    <tr>
+                                    <!-- <tr>
                                         <td>3</td>
                                         <td><a href="mailto:princegodson24@gmail.com" class="email-Ahrf">princegodson24@gmail.com</a></td>
                                         <td>Prince</td>
                                         <td>Godson</td>
                                         <td>Health</td>
                                         <td>Mon, 16th May 2023</td>
-                                    </tr>
+                                    </tr> -->
 
                                 </tbody>
                             </table>
@@ -240,17 +240,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         </div>
         </div><!--main-section-->
     </section><!--site-content-->
@@ -263,5 +252,48 @@
      <script src="js/main.js"></script>
          <script src='js/chart.js'></script>
     <script src="js/chat-canvas.js"></script>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const courseId = urlParams.get('course_id');
+            const categoryName = urlParams.get('category_name');
+            const courseTitle = urlParams.get('course_title');
+            document.getElementById("course_title").textContent = courseTitle;
+    
+            fetch(`https://new-arts-api.onrender.com/user/course/${courseId}/users/`)
+                .then(response => response.json())
+                .then(data => {
+                    const users = data.users;
+                    const tableBody = document.querySelector('#userTable tbody');
+    
+                    users.forEach((user, index) => {
+                        const row = tableBody.insertRow();
+                        const serialNumberCell = row.insertCell(0);
+                        const emailCell = row.insertCell(1);
+                        const firstNameCell = row.insertCell(2);
+                        const lastNameCell = row.insertCell(3);
+                        const courseCategoryCell = row.insertCell(4); // This cell is for category
+                        const dateCell = row.insertCell(5);
+    
+                        serialNumberCell.textContent = index + 1;
+                        emailCell.innerHTML = `<a href="mailto:${user.email}" class="email-Ahrf">${user.email}</a>`;
+                        firstNameCell.textContent = user.first_name;
+                        lastNameCell.textContent = user.last_name;
+                        courseCategoryCell.textContent = categoryName; // Set category name directly
+                        dateCell.textContent = formatDate(user.registration_date);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        };
+    
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
+            const formattedDate = date.toLocaleDateString('en-US', options);
+            return formattedDate.replace(/(\d)(st|nd|rd|th)/, '$1<sup>$2</sup>');
+        }
+    </script>
+    
    </body>
    </html>
