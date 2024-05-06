@@ -1,5 +1,3 @@
-import { SERVER_URL } from '../config.js';
-
 let loginPage = "https://new-arts-website.vercel.app/login.html"
 let coursesPage = "https://new-arts-website.vercel.app/courses.html"
 

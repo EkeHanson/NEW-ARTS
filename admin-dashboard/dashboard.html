@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/simple-line-icons.css">
     <link rel="stylesheet" href="css/include.css">
     <link rel="stylesheet" href="css/dashboard.css"/>
+    <script src="../config.js"></script>
 
 
 
@@ -649,7 +650,7 @@
     <script src='js/chart.js'></script>
     <script src="js/chat-canvas.js"></script>
     <script>
-        fetch('https://new-arts-api.onrender.com/course/instructors/')
+        fetch(`${SERVER_URL}/course/instructors/`)
             .then(response => response.json())
             .then(data => {
                 // console.log('API Response:', data); // Log the API response
@@ -679,7 +680,7 @@
                                     <div class="instruc-profl-grid">
                                         <div class="profl-img">
                                             <div class="profl-img-main">
-                                                <img src="https://new-arts-api.onrender.com${instructor.image}" alt ="Not Found">
+                                                <img src="${SERVER_URL}${instructor.image}" alt ="Not Found">
                                                 <span class="online"></span>
                                             </div>
                                         </div>
@@ -715,7 +716,6 @@
             event.preventDefault(); // Prevent default form submission behavior
     
             // Get form data
-            alert('submit-category selected')
           
             let name = document.getElementById('category-title').value;
             let details = document.getElementById('category-description').value;
@@ -730,7 +730,7 @@
     
             // Send POST request using fetch API
             document.getElementById('submit-category').textContent = "Submitting ..."
-            fetch('https://new-arts-api.onrender.com/course/categories/', {
+            fetch(`${SERVER_URL}/course/categories/`, {
                 method: 'POST',
                 body: formData,
             })
@@ -738,7 +738,7 @@
                 if (response.ok) {
                     // Category created successfully
                     document.getElementById('submit-category').textContent = "Submitting"
-                    window.location.href = "courses.html";
+                    window.location.href = "category.html";
                 } else {
                     // Error handling
                     throw new Error('Failed to create category');
@@ -775,7 +775,7 @@
     
             // Send POST request using fetch API
             document.getElementById('submit-instructor').textContent = "Submitting ..."
-            fetch('https://new-arts-api.onrender.com/course/instructors/', {
+            fetch(`${SERVER_URL}/course/instructors/`, {
                 method: 'POST',
                 body: formData,
             })
@@ -799,7 +799,7 @@
 
         //COURSES
         // Fetch data from the Category API endpoint // Fetch data from the Instructors API endpoint
-            fetch('https://new-arts-api.onrender.com/course/instructors/')
+            fetch(`${SERVER_URL}/course/instructors/`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -822,7 +822,7 @@
                 console.error('Error fetching data:', error);
             });
                         // Fetch categories
-            fetch('https://new-arts-api.onrender.com/course/categories/')
+            fetch(`${SERVER_URL}/course/categories/`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -869,7 +869,7 @@
             formData.append('days_per_week', daysPerWeek);
 
             // Send POST request using fetch API
-            fetch('https://new-arts-api.onrender.com/course/', {
+            fetch(`${SERVER_URL}/course/`, {
                 method: 'POST',
                 body: formData,
             })
@@ -978,7 +978,7 @@ const scheduleData = {
 
     
     // Fetch data from the enrolled users endpoint
-    fetch('https://new-arts-api.onrender.com/course/enrolled/')
+    fetch(`${SERVER_URL}/course/enrolled/`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -1002,7 +1002,7 @@ const scheduleData = {
     });
 
   // Fetch data from the  users endpoint
-    fetch('https://new-arts-api.onrender.com/user/create/')
+    fetch(`${SERVER_URL}/user/create/`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -1025,7 +1025,7 @@ const scheduleData = {
         console.error('Error fetching data:', error);
     });
     // Fetch Instructors data from the endpoint
-    fetch('https://new-arts-api.onrender.com/course/instructors/')
+    fetch(`${SERVER_URL}/course/instructors/`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -1048,7 +1048,7 @@ const scheduleData = {
         console.error('Error fetching data:', error);
     });
     // Fetch courses data from the endpoint
-    fetch('https://new-arts-api.onrender.com/course/')
+    fetch(`${SERVER_URL}/course/`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');

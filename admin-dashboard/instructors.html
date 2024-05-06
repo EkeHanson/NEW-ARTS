@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/simple-line-icons.css">
     <link rel="stylesheet" href="css/include.css">
     <link rel="stylesheet" href="css/dashboard.css"/>
+    <script src="../config.js"></script>
 
 
 
@@ -400,7 +401,7 @@
     <script src="js/chat-canvas.js"></script>
     
     <script>
-        fetch('https://new-arts-api.onrender.com/course/instructors/')
+        fetch(`${SERVER_URL}/course/instructors/`)
             .then(response => response.json())
             .then(data => {
                 // console.log('API Response:', data); // Log the API response
@@ -430,7 +431,7 @@
                                     <div class="instruc-profl-grid">
                                         <div class="profl-img">
                                             <div class="profl-img-main">
-                                                <img src="https://new-arts-api.onrender.com${instructor.image}" alt ="Not Found">
+                                                <img src="${SERVER_URL}${instructor.image}" alt ="Not Found">
                                                 <span class="online"></span>
                                             </div>
                                         </div>
@@ -448,7 +449,7 @@
                      
                         <td>
                             <div class="action-btns">
-                                <a href="instructor-profile.html"><i class="icon-user"></i> Profile</a>
+                                <a href="instructor-profile.html?instructor_id=${instructor.id}"><i class="icon-user"></i> Profile</a>
                                 <button><i class="ti-close"></i>  Remove</button>
                             </div>
                         </td>
@@ -488,7 +489,7 @@ document.getElementById('submit-instructor').addEventListener('click', function(
     
             // Send POST request using fetch API
             document.getElementById('submit-instructor').textContent = "Submitting ..."
-            fetch('https://new-arts-api.onrender.com/course/instructors/', {
+            fetch(`${SERVER_URL}/course/instructors/`, {
                 method: 'POST',
                 body: formData,
             })

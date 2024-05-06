@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/simple-line-icons.css">
     <link rel="stylesheet" href="css/include.css">
     <link rel="stylesheet" href="css/dashboard.css"/>
+    <script src="../config.js"></script>
 
 
 
@@ -308,7 +309,7 @@
 
     <script>
       // Send a GET request to the endpoint and populate the table
-      fetch('https://new-arts-api.onrender.com/course/enrolled/')
+      fetch(`${SERVER_URL}/course/enrolled/`)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -322,7 +323,7 @@
           // Iterate over the data and create table rows
           data.forEach(course => {
             // Fetch category information
-            fetch(`https://new-arts-api.onrender.com/course/categories/${course.category}/`)
+            fetch(`${SERVER_URL}/course/categories/${course.category}/`)
               .then(response => {
                 if (!response.ok) {
                   throw new Error('Failed to fetch category information');
@@ -331,7 +332,7 @@
               })
               .then(categoryData => {
                 // Fetch instructor information
-                fetch(`https://new-arts-api.onrender.com/course/instructors/${course.instructor_id}/`)
+                fetch(`${SERVER_URL}/course/instructors/${course.instructor_id}/`)
                   .then(response => {
                     if (!response.ok) {
                       throw new Error('Failed to fetch instructor information');
@@ -354,18 +355,18 @@
                             <div class="instruc-profl-grid">
                               <div class="profl-img">
                                 <div class="profl-img-main">
-                                  <img src="https://new-arts-api.onrender.com${categoryData.image}" alt="${categoryData.name}">
+                                  <img src="${SERVER_URL}${categoryData.image}" alt="${categoryData.name}">
                                   <span class="online"></span>
                                 </div>
                               </div>
                               <div class="profl-dlts">
-                                <p>${instructorData.instructor_first_name}</p>
+                                <td>${instructorData.instructor_first_name}</td>
                               </div>
                             </div>
                           </div>
                         </div>
                       </td>
-                      <td>${course.amount}</td>
+                      <td> &#8364; ${course.amount}</td>
                      
                       <td>${course.days_per_week} Days</td>
                       <td>${course.number_of_students !== null ? course.number_of_students : 0}</td>

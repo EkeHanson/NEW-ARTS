@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/include.css"/>
     <link rel="stylesheet" href="css/ocean.css">
     <link rel="stylesheet" href="css/register.css"/>
+    <script src="config.js"></script>
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.2/css/all.min.css" integrity="sha512-g0gRzvKX9GBUbjlJZ02n2GLRJVabgLm6b3oypbkF6ne1T2+ZHCucKRd8qt31a3BCGahAlBmXUDS7lu2pYuWB7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -111,13 +112,15 @@
 <!-- main site .js -->
   <script src="js/main.js"></script>
   <script src="js/index.js"></script>
+ 
   <script>
-
 if (document.querySelector("#logInForm")) {
-                        localStorage.removeItem('accessToken');
-                        localStorage.removeItem('userId');
-                        localStorage.removeItem('userFirstName');
-                        localStorage.removeItem('userLastName');
+
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userFirstName');
+    localStorage.removeItem('userLastName');
+
     document.getElementById('signInBtn').addEventListener('click', function(event) {
         event.preventDefault(); // Prevent the default form submission
         
@@ -131,7 +134,7 @@ if (document.querySelector("#logInForm")) {
         };
 
         // Send POST request using fetch API
-        fetch('https://new-arts-api.onrender.com/user/login/', {
+        fetch(`${SERVER_URL}/user/login/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

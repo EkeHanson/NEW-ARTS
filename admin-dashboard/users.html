@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/simple-line-icons.css">
     <link rel="stylesheet" href="css/include.css">
     <link rel="stylesheet" href="css/dashboard.css"/>
+    <script src="../config.js"></script>
 
 
 
@@ -266,7 +267,7 @@
     <script>
 
         // Fetch data from the endpoint
-fetch('https://new-arts-api.onrender.com/user/create/')
+fetch(`${SERVER_URL}/user/create/`)
 .then(response => {
     if (!response.ok) {
         throw new Error('Network response was not ok');

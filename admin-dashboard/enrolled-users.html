@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/simple-line-icons.css">
     <link rel="stylesheet" href="css/include.css">
     <link rel="stylesheet" href="css/dashboard.css"/>
+    <script src="../config.js"></script>
 
 
 
@@ -262,7 +263,7 @@
             const courseTitle = urlParams.get('course_title');
             document.getElementById("course_title").textContent = courseTitle;
     
-            fetch(`http://127.0.0.1:9090/user/create/${courseId}/`)
+            fetch(`${SERVER_URL}/user/create/${courseId}/`)
                 .then(response => response.json())
                 .then(data => {
                     // console.log(data); // Log the response data
@@ -284,7 +285,7 @@
                         firstNameCell.textContent = data.first_name;
                         lastNameCell.textContent = data.last_name;
                         courseCategoryCell.textContent = categoryName; // Set category name directly
-                        dateCell.textContent = formatDate(data.last_login);
+                        dateCell.textContent = formatDate(data.date_joined);
                     } else {
                         alert("Course not found in enrolled courses.");
                     }

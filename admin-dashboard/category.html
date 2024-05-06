@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
      <meta name="description" content="">
-
+     <script src="../config.js"></script>
     <link rel="icon" type="image/png" href="img/logo-icon.png">
     <link rel="stylesheet" href="css/owl.carousel.css"/>
     <link rel="stylesheet" href="css/animate.min.css"/>
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/simple-line-icons.css">
     <link rel="stylesheet" href="css/include.css">
     <link rel="stylesheet" href="css/dashboard.css"/>
+    
 
 
 
@@ -308,7 +309,6 @@
             event.preventDefault(); // Prevent default form submission behavior
     
             // Get form data
-            alert('submit-category selected')
           
             let name = document.getElementById('category-title').value;
             let details = document.getElementById('category-description').value;
@@ -323,7 +323,7 @@
     
             // Send POST request using fetch API
             document.getElementById('submit-category').textContent = "Submitting ..."
-            fetch('https://new-arts-api.onrender.com/course/categories/', {
+            fetch(`${SERVER_URL}/course/categories/`, {
                 method: 'POST',
                 body: formData,
             })
@@ -347,7 +347,7 @@
     </script>
     <script>// Function to send a GET request to the endpoint
         function fetchData() {
-          fetch('https://new-arts-api.onrender.com/course/categories/')
+          fetch(`${SERVER_URL}/course/categories/`)
             .then(response => {
               if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -393,7 +393,7 @@
                     <div class="instruc-profl-grid">
                       <div class="profl-img">
                         <div class="profl-img-main">
-                          <img src="https://new-arts-api.onrender.com${category.image}" alt="${category.name}">
+                          <img src="${SERVER_URL}${category.image}" alt="${category.name}">
                           <span class="online"></span>
                         </div>
                       </div>
