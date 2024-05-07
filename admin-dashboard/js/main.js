@@ -152,10 +152,36 @@ $(document).ready(function(){
     });
   });
 
+
 $(document).ready(function(){
     $('.Close-Upload-Box').click(function(){
       $(".cartegory-Box").removeClass("active-upload-Sec");
       $(".instructor-Box").removeClass("active-upload-Sec");
         $(".courses-Box").removeClass("active-upload-Sec");
+        $(".edit-cartegory-Box").removeClass("active-upload-Sec");
+        $(".edit-courses-Box").removeClass("active-upload-Sec");
+        $(".edit-instructor-Box").removeClass("active-upload-Sec");
+    });
+  });
+
+
+
+
+$(document).ready(function(){
+    $('.edit-cartegory-Btn').click(function(){
+        $(".edit-cartegory-Box").addClass("active-upload-Sec");
+    });
+  });
+
+$(document).ready(function(){
+    $('.edit-courses-Btn').click(function(){
+        $(".edit-courses-Box").addClass("active-upload-Sec");
+    });
+  });
+ 
+
+$(document).ready(function(){
+    $('.edit-cartegory-Btn').click(function(){
+        $(".edit-instructor-Box").addClass("active-upload-Sec");
     });
   });

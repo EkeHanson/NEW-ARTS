@@ -150,13 +150,21 @@ if (document.querySelector("#logInForm")) {
         })
         .then(data => {
             // Handle successful login
+            console.log(data.user_type)
+            console.log(data.image)
             localStorage.setItem('accessToken', data.access_token);
             localStorage.setItem('userId', data.user_id);
-            localStorage.setItem('userFirstName', data.user_first_name);
-            localStorage.setItem('userLastName', data.user_last_name);
-            localStorage.setItem('userEmail', data.user_email);
+            localStorage.setItem('userFirstName', data.first_name);
+            localStorage.setItem('userImage', data.image);
+            localStorage.setItem('userLastName', data.last_name);
+            localStorage.setItem('userEmail', data.email);
             // Redirect to courses page
-            window.location.href = 'courses.html';
+            if (data.user_type === "admin"){
+              window.location.href = 'admin-dashboard/dashboard.html';
+            }
+            else{
+              window.location.href = 'courses.html';
+            }
         })
         .catch(error => {
             // Handle login errors

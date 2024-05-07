@@ -253,45 +253,43 @@
      <script src="js/main.js"></script>
          <script src='js/chart.js'></script>
     <script src="js/chat-canvas.js"></script>
-
     <script>
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const courseId = urlParams.get('course_id');
-            console.log(courseId)
             const categoryName = urlParams.get('category_name');
             const courseTitle = urlParams.get('course_title');
             document.getElementById("course_title").textContent = courseTitle;
     
-            fetch(`${SERVER_URL}/user/create/${courseId}/`)
+            fetch(`${SERVER_URL}/user/create/`)
                 .then(response => response.json())
                 .then(data => {
-                    // console.log(data); // Log the response data
-                    const enrolledCourses = data.enrolled_courses;
+                    data.forEach(userData => {
+                        const enrolledCourses = userData.enrolled_courses;
+                          
+                        // Check if courseId is in the enrolledCourses array
+                        if (enrolledCourses.includes(parseInt(courseId))) {
+                            const tableBody = document.querySelector('#userTable tbody');
+                            const row = tableBody.insertRow();
+                            const serialNumberCell = row.insertCell(0);
+                            const emailCell = row.insertCell(1);
+                            const firstNameCell = row.insertCell(2);
+                            const lastNameCell = row.insertCell(3);
+                            const courseCategoryCell = row.insertCell(4); // This cell is for category
+                            const dateCell = row.insertCell(5);
     
-                    // Check if courseId is in the enrolledCourses array
-                    if (enrolledCourses.includes(parseInt(courseId))) {
-                        const tableBody = document.querySelector('#userTable tbody');
-                        const row = tableBody.insertRow();
-                        const serialNumberCell = row.insertCell(0);
-                        const emailCell = row.insertCell(1);
-                        const firstNameCell = row.insertCell(2);
-                        const lastNameCell = row.insertCell(3);
-                        const courseCategoryCell = row.insertCell(4); // This cell is for category
-                        const dateCell = row.insertCell(5);
-    
-                        serialNumberCell.textContent = 1;
-                        emailCell.innerHTML = `<a href="mailto:${data.email}" class="email-Ahrf">${data.email}</a>`;
-                        firstNameCell.textContent = data.first_name;
-                        lastNameCell.textContent = data.last_name;
-                        courseCategoryCell.textContent = categoryName; // Set category name directly
-                        dateCell.textContent = formatDate(data.date_joined);
-                    } else {
-                        alert("Course not found in enrolled courses.");
-                    }
+                            serialNumberCell.textContent = 1;
+                            emailCell.innerHTML = `<a href="mailto:${userData.email}" class="email-Ahrf">${userData.email}</a>`;
+                            firstNameCell.textContent = userData.first_name;
+                            lastNameCell.textContent = userData.last_name;
+                            courseCategoryCell.textContent = categoryName; // Set category name directly
+                            dateCell.textContent = formatDate(userData.date_joined);
+                        }
+                    });
                 })
                 .catch(error => console.error('Error fetching data:', error));
         };
+    
         function formatDate(dateString) {
             const date = new Date(dateString);
             const options = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
@@ -299,9 +297,6 @@
             return formattedDate.replace(/(\d)(st|nd|rd|th)/, '$1<sup>$2</sup>');
         }
     </script>
-    
-    
-    
     
     
    </body>
